@@ -141,6 +141,7 @@ output_file_csv=os.path.join(output_directory,'CT_ID_and_ateleactasis_volume.csv
 
 atelectasis_percentage_list=[]
 atelectasis_percentage,total_lung_voxel,total_atelectasis_voxel=segment_lesion_area(INPUT,'LTRCLobes_R231',output_directory)
+atelectasis_percentage_list.append([os.path.basename(INPUT).split('.nii')[0],atelectasis_percentage,total_lung_voxel,total_atelectasis_voxel])
 atelectasis_percentage_df=pd.DataFrame(atelectasis_percentage_list)
 atelectasis_percentage_df.columns =['Filename','atelectasis_percentage','total_lung_voxel','total_atelectasis_voxel']
 atelectasis_percentage_df.to_csv(output_file_csv,index=False)
