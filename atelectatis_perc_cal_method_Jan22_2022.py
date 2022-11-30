@@ -18,7 +18,7 @@ import pandas as pd
 
 sys.path.append("/storage1/fs1/dharr/Active/ATUL/PROJECTS/NWU/SOFTWARE/")
  
-from utilities_simple_latex import * 
+from utilities_simple_forlungproject import *
 
 def mask_on_image(grayimagefile,maskimagefile,ext_img='jpg'):
     I=cv2.imread(grayimagefile) 
