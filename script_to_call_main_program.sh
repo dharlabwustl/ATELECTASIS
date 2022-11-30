@@ -14,5 +14,5 @@ done
 #################################### VESSEL SEGMENTATION ###############################################
 for INPUTFILENAME in /workinginput/*.nii* ;
 do
-/opt/conda/envs/rapids/bin/python /software/vessel_segmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
+/opt/conda/bin/python /software/vessel_segmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
 done
