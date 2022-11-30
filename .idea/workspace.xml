@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a183c3a4-15ad-4e53-b612-6f3ac99f88e4" name="Changes" comment="nth commit">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ATELECTASIS.iml" afterDir="false" />
+    <list default="true" id="9badd5b1-df75-461b-a945-875443e6ff64" name="Changes" comment="Commit 1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/downloadcodefromgithub.sh" beforeDir="false" afterPath="$PROJECT_DIR$/downloadcodefromgithub.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -79,7 +77,28 @@
       <option name="project" value="LOCAL" />
       <updated>1669835250684</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Commit 1">
+      <created>1669841235882</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669841235882</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Commit 1">
+      <created>1669841249825</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669841249825</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Commit 1">
+      <created>1669841324963</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669841324963</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -96,7 +115,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1st commit" />
     <MESSAGE value="nth commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="nth commit" />
+    <MESSAGE value="Commit 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
