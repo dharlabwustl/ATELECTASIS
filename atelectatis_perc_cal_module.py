@@ -9,7 +9,7 @@ import SimpleITK as sitk
 import numpy as np
 import nibabel as nib
 import cv2 as cv
-from niwidgets import NiftiWidget, examplet1
+# from niwidgets import NiftiWidget, examplet1
 import matplotlib.pyplot as plt
 import re
 from skimage import exposure
