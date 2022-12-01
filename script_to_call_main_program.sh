@@ -9,7 +9,7 @@ OUTPUTDIRNAME=/workingoutput #${2}
 ##############################LUNG SEGMENTATION ##########################################
 for INPUTFILENAME in /workinginput/*.nii* ;
 do
-/opt/conda/envs/rapids/bin/python /software/lungsegmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
+/opt/conda/bin/python /software/lungsegmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
 done
 ################################### VESSEL SEGMENTATION ###############################################
 for INPUTFILENAME in /workinginput/*.nii* ;
@@ -21,5 +21,5 @@ LATEX_DIR=/latex
 IMAGES_DIR=/images
 for INPUTFILENAME in /workinginput/*.nii* ;
 do
-/opt/conda/envs/rapids/bin/python /software/atelectatis_perc_cal_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME} ${IMAGES_DIR} ${CALCULATION_DIR} ${LATEX_DIR}
+/opt/conda/bin/python  /software/atelectatis_perc_cal_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME} ${IMAGES_DIR} ${CALCULATION_DIR} ${LATEX_DIR}
 done
