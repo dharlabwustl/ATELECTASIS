@@ -124,121 +124,121 @@ if os.path.exists(vesselmask_filename):
 
 # # In[6]:
 
-
-
-image_dir=sys.argv[3] #os.path.join(grayscale_dir,'imagesforpdfs_nooc')
-
-
- #all_gray_files[0]
-
-grayfile_basename_noext=os.path.basename(grayfilename).split(".nii")[0]
-
-atelectasis_filename=os.path.join(atelectasis_mask_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) + "_OCVOC.nii.gz")
-if os.path.exists(atelectasis_filename):
-    saveslicesofnifti_1(atelectasis_filename,in_range=(0,1),savetodir=image_dir,ismask=True)
-
-    saveslicesofnifti_1(grayfilename,in_range=(-400,200),savetodir=image_dir)
-
-    lung_mask_filename=os.path.join(masks_dir,grayfile_basename_noext+"_lung_gray_seg_LTRCLobes_R231_bw.nii.gz")
-    saveslicesofnifti_1(lung_mask_filename,in_range=(0,1),savetodir=image_dir,ismask=True)
-    vesselmask_filename=os.path.join(vesselmasks_modified_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) +'_vessels_modfd.nii.gz')
-    saveslicesofnifti_1(vesselmask_filename,in_range=(0,1),savetodir=image_dir,ismask=True)
-    counter=counter+1
-
-
-
-directoryname=image_dir #os.path.join(grayscale_dir,'imagesforpdfs_nooc') #"/storage1/fs1/dharr/Active/ATUL/PROJECTS/LUNGS/DATA/FromPorche/imagesforpdfs"
-# directoryname
-# allfiles=glob.glob(os.path.join(grayscale_dir,"*.nii*"))
-files_with1ext=sorted(glob.glob(os.path.join(directoryname,re.sub('[^a-zA-Z0-9]',"_",grayfile_basename_noext)+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) +"_OCVOC*")))
-derived_img_ext= "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) +"_OCVOC"
-counter=counter+1
-for file in files_with1ext:
-    number=file[-7:-4]
-    basefile=file.split(derived_img_ext)[0] + str(number)+".jpg"  
-#     print(basefile)
-    if os.path.exists(basefile):
-#             print(basefile)
-#     print(file)
-        filename1=mask_on_image(basefile,file,ext_img='jpg')
-#     print(file)
-
-
-
-counter=0
-calculation_output_directory=sys.argv[4]  #os.path.join(grayscale_dir,'calculation_output_directory_nooc')
-atelectasis_percentage_list=[]
-grayfile_basename_noext=os.path.basename(grayfilename).split(".nii")[0]
-atelectasis_filename=os.path.join(atelectasis_mask_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) + "_OCVOC.nii.gz")
-# print(atelectasis_filename)
-#                 atelectasis_filename=os.path.join(atelectasis_mask_dir,grayfile_basename_noext+"_OCVOC.nii.gz")
+#
+#
+# image_dir=sys.argv[3] #os.path.join(grayscale_dir,'imagesforpdfs_nooc')
+#
+#
+#  #all_gray_files[0]
+#
+# grayfile_basename_noext=os.path.basename(grayfilename).split(".nii")[0]
+#
+# atelectasis_filename=os.path.join(atelectasis_mask_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) + "_OCVOC.nii.gz")
 # if os.path.exists(atelectasis_filename):
-print("I AM HERE")
-atelectasis_filename_nib=nib.load(atelectasis_filename)
-atelectasis_filename_nib_data=atelectasis_filename_nib.get_fdata()
-atelectasis_filename_nib_data=atelectasis_filename_nib_data[atelectasis_filename_nib_data>0]
-atelectasis_filename_nib_data_len=atelectasis_filename_nib_data.shape[0]
-lung_mask_filename=os.path.join(masks_dir,grayfile_basename_noext+"_lung_gray_seg_LTRCLobes_R231_bw.nii.gz")
-lung_mask_filename_nib=nib.load(lung_mask_filename)
-lung_mask_filename_nib_data=lung_mask_filename_nib.get_fdata()
-lung_mask_filename_nib_data=lung_mask_filename_nib_data[lung_mask_filename_nib_data>0]
-lung_mask_filename_nib_data_len=lung_mask_filename_nib_data.shape[0]
-print("{}:{}:{}".format(grayfilename,atelectasis_filename_nib_data_len,lung_mask_filename_nib_data_len))
-atelectasis_percentage=(atelectasis_filename_nib_data_len/lung_mask_filename_nib_data_len) * 100
-atelectasis_percentage_list.append([grayfile_basename_noext,atelectasis_percentage,lung_mask_filename_nib_data_len,atelectasis_filename_nib_data_len])
-#         print(lung_mask_filename_nib_data_len)
-output_file_csv=os.path.join(calculation_output_directory,grayfile_basename_noext+'CT_ID_and_ateleactasis_volume'+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) + "_OCVOC_"+'.csv')
-atelectasis_percentage_df=pd.DataFrame(atelectasis_percentage_list)
-atelectasis_percentage_df.columns =['FILENAME','atelectasis_percentage','total_lung_voxel','total_atelectasis_voxel']
-atelectasis_percentage_df.to_csv(output_file_csv,index=False)
-print(output_file_csv)
-directory_tosave_images=image_dir
-original_ct_fn=grayfilename
-filename_=[]
-filename_.append([os.path.basename(original_ct_fn).split(".nii")[0]])
-filename_df=pd.DataFrame(filename_)
-filename_df.columns=['FILENAME']
-latexfile_directory=sys.argv[5]  #os.path.join(grayscale_dir,"TEXFILES")
-latexfilename=os.path.join(latexfile_directory,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'.tex')
-
-latex_start(latexfilename)
-latex_begin_document(latexfilename)
-latex_start_tableNc_noboundary(latexfilename,1)
-latex_insert_line_nodek(latexfilename,text=filename_df.to_latex(index=False))
-latex_end_table2c(latexfilename)
-latex_start_tableNc_noboundary(latexfilename,1)
-atelectasis_percentage_df=atelectasis_percentage_df.drop(['FILENAME'], axis=1)
-latex_insert_line_nodek(latexfilename,text=atelectasis_percentage_df.to_latex(index=False))
-latex_end_table2c(latexfilename)
-for each_slice_file in sorted(glob.glob(os.path.join(directory_tosave_images,os.path.basename(original_ct_fn).split(".nii")[0]+'_lung_gray_seg_LTRCLobes_R231_bw*.jpg'))) : ##original_ct_fn_nib_data.shape[2]):
-#     print(each_slice_file)
-# # #     print(original_ct_fn_nib_data.shape[0])
-    slice_num=int(os.path.basename(each_slice_file)[-7:-4])
-#     print(slice_num)
-
-    grayscale_slice_fn=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+str("{:03d}".format(slice_num))+".jpg" )
-    if     os.path.exists(grayscale_slice_fn):
-        print(grayscale_slice_fn)
-    vessel_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_vessels_modfd'+ str("{:03d}".format(slice_num))+".jpg" )
-    if     os.path.exists(vessel_image):
-        print(vessel_image)
-    atelectasismask_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_OCVOC'+ str("{:03d}".format(slice_num))+".jpg" )
-    if     os.path.exists(atelectasismask_image):
-        print(atelectasismask_image)
-    atelectasismask_gray_superim_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_OCVOCsuperimp'+ str("{:03d}".format(slice_num))+".jpg" )
-    if     os.path.exists(atelectasismask_gray_superim_image):
-        print(atelectasismask_gray_superim_image)
-    if os.path.exists(grayscale_slice_fn) and os.path.exists(vessel_image) and os.path.exists(atelectasismask_image) and os.path.exists(atelectasismask_gray_superim_image):
-        allfilewithbaseprefix=[grayscale_slice_fn,each_slice_file,vessel_image,atelectasismask_image,atelectasismask_gray_superim_image]
-
-        latex_start_tableNc_noboundary(latexfilename,len(allfilewithbaseprefix))
-        latex_insertimage_tableNc_v1(latexfilename,allfilewithbaseprefix,len(allfilewithbaseprefix), caption="FIGURE",imagescale=1/(1+len(allfilewithbaseprefix)), angle=90,space=1)
-    #     #             print(allfilewithbaseprefix)
-        latex_end_table2c(latexfilename)
-latex_end(latexfilename)
-
-
-# # In[ ]:
-
-
-
+#     saveslicesofnifti_1(atelectasis_filename,in_range=(0,1),savetodir=image_dir,ismask=True)
+#
+#     saveslicesofnifti_1(grayfilename,in_range=(-400,200),savetodir=image_dir)
+#
+#     lung_mask_filename=os.path.join(masks_dir,grayfile_basename_noext+"_lung_gray_seg_LTRCLobes_R231_bw.nii.gz")
+#     saveslicesofnifti_1(lung_mask_filename,in_range=(0,1),savetodir=image_dir,ismask=True)
+#     vesselmask_filename=os.path.join(vesselmasks_modified_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) +'_vessels_modfd.nii.gz')
+#     saveslicesofnifti_1(vesselmask_filename,in_range=(0,1),savetodir=image_dir,ismask=True)
+#     counter=counter+1
+#
+#
+#
+# directoryname=image_dir #os.path.join(grayscale_dir,'imagesforpdfs_nooc') #"/storage1/fs1/dharr/Active/ATUL/PROJECTS/LUNGS/DATA/FromPorche/imagesforpdfs"
+# # directoryname
+# # allfiles=glob.glob(os.path.join(grayscale_dir,"*.nii*"))
+# files_with1ext=sorted(glob.glob(os.path.join(directoryname,re.sub('[^a-zA-Z0-9]',"_",grayfile_basename_noext)+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) +"_OCVOC*")))
+# derived_img_ext= "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) +"_OCVOC"
+# counter=counter+1
+# for file in files_with1ext:
+#     number=file[-7:-4]
+#     basefile=file.split(derived_img_ext)[0] + str(number)+".jpg"
+# #     print(basefile)
+#     if os.path.exists(basefile):
+# #             print(basefile)
+# #     print(file)
+#         filename1=mask_on_image(basefile,file,ext_img='jpg')
+# #     print(file)
+#
+#
+#
+# counter=0
+# calculation_output_directory=sys.argv[4]  #os.path.join(grayscale_dir,'calculation_output_directory_nooc')
+# atelectasis_percentage_list=[]
+# grayfile_basename_noext=os.path.basename(grayfilename).split(".nii")[0]
+# atelectasis_filename=os.path.join(atelectasis_mask_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) + "_OCVOC.nii.gz")
+# # print(atelectasis_filename)
+# #                 atelectasis_filename=os.path.join(atelectasis_mask_dir,grayfile_basename_noext+"_OCVOC.nii.gz")
+# # if os.path.exists(atelectasis_filename):
+# print("I AM HERE")
+# atelectasis_filename_nib=nib.load(atelectasis_filename)
+# atelectasis_filename_nib_data=atelectasis_filename_nib.get_fdata()
+# atelectasis_filename_nib_data=atelectasis_filename_nib_data[atelectasis_filename_nib_data>0]
+# atelectasis_filename_nib_data_len=atelectasis_filename_nib_data.shape[0]
+# lung_mask_filename=os.path.join(masks_dir,grayfile_basename_noext+"_lung_gray_seg_LTRCLobes_R231_bw.nii.gz")
+# lung_mask_filename_nib=nib.load(lung_mask_filename)
+# lung_mask_filename_nib_data=lung_mask_filename_nib.get_fdata()
+# lung_mask_filename_nib_data=lung_mask_filename_nib_data[lung_mask_filename_nib_data>0]
+# lung_mask_filename_nib_data_len=lung_mask_filename_nib_data.shape[0]
+# print("{}:{}:{}".format(grayfilename,atelectasis_filename_nib_data_len,lung_mask_filename_nib_data_len))
+# atelectasis_percentage=(atelectasis_filename_nib_data_len/lung_mask_filename_nib_data_len) * 100
+# atelectasis_percentage_list.append([grayfile_basename_noext,atelectasis_percentage,lung_mask_filename_nib_data_len,atelectasis_filename_nib_data_len])
+# #         print(lung_mask_filename_nib_data_len)
+# output_file_csv=os.path.join(calculation_output_directory,grayfile_basename_noext+'CT_ID_and_ateleactasis_volume'+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) + "_OCVOC_"+'.csv')
+# atelectasis_percentage_df=pd.DataFrame(atelectasis_percentage_list)
+# atelectasis_percentage_df.columns =['FILENAME','atelectasis_percentage','total_lung_voxel','total_atelectasis_voxel']
+# atelectasis_percentage_df.to_csv(output_file_csv,index=False)
+# print(output_file_csv)
+# directory_tosave_images=image_dir
+# original_ct_fn=grayfilename
+# filename_=[]
+# filename_.append([os.path.basename(original_ct_fn).split(".nii")[0]])
+# filename_df=pd.DataFrame(filename_)
+# filename_df.columns=['FILENAME']
+# latexfile_directory=sys.argv[5]  #os.path.join(grayscale_dir,"TEXFILES")
+# latexfilename=os.path.join(latexfile_directory,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'.tex')
+#
+# latex_start(latexfilename)
+# latex_begin_document(latexfilename)
+# latex_start_tableNc_noboundary(latexfilename,1)
+# latex_insert_line_nodek(latexfilename,text=filename_df.to_latex(index=False))
+# latex_end_table2c(latexfilename)
+# latex_start_tableNc_noboundary(latexfilename,1)
+# atelectasis_percentage_df=atelectasis_percentage_df.drop(['FILENAME'], axis=1)
+# latex_insert_line_nodek(latexfilename,text=atelectasis_percentage_df.to_latex(index=False))
+# latex_end_table2c(latexfilename)
+# for each_slice_file in sorted(glob.glob(os.path.join(directory_tosave_images,os.path.basename(original_ct_fn).split(".nii")[0]+'_lung_gray_seg_LTRCLobes_R231_bw*.jpg'))) : ##original_ct_fn_nib_data.shape[2]):
+# #     print(each_slice_file)
+# # # #     print(original_ct_fn_nib_data.shape[0])
+#     slice_num=int(os.path.basename(each_slice_file)[-7:-4])
+# #     print(slice_num)
+#
+#     grayscale_slice_fn=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+str("{:03d}".format(slice_num))+".jpg" )
+#     if     os.path.exists(grayscale_slice_fn):
+#         print(grayscale_slice_fn)
+#     vessel_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_vessels_modfd'+ str("{:03d}".format(slice_num))+".jpg" )
+#     if     os.path.exists(vessel_image):
+#         print(vessel_image)
+#     atelectasismask_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_OCVOC'+ str("{:03d}".format(slice_num))+".jpg" )
+#     if     os.path.exists(atelectasismask_image):
+#         print(atelectasismask_image)
+#     atelectasismask_gray_superim_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_OCVOCsuperimp'+ str("{:03d}".format(slice_num))+".jpg" )
+#     if     os.path.exists(atelectasismask_gray_superim_image):
+#         print(atelectasismask_gray_superim_image)
+#     if os.path.exists(grayscale_slice_fn) and os.path.exists(vessel_image) and os.path.exists(atelectasismask_image) and os.path.exists(atelectasismask_gray_superim_image):
+#         allfilewithbaseprefix=[grayscale_slice_fn,each_slice_file,vessel_image,atelectasismask_image,atelectasismask_gray_superim_image]
+#
+#         latex_start_tableNc_noboundary(latexfilename,len(allfilewithbaseprefix))
+#         latex_insertimage_tableNc_v1(latexfilename,allfilewithbaseprefix,len(allfilewithbaseprefix), caption="FIGURE",imagescale=1/(1+len(allfilewithbaseprefix)), angle=90,space=1)
+#     #     #             print(allfilewithbaseprefix)
+#         latex_end_table2c(latexfilename)
+# latex_end(latexfilename)
+#
+#
+# # # In[ ]:
+#
+#
+#
