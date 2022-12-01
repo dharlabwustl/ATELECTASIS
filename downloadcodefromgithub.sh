@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /software/
-gitlink=https://github.com/dharlabwustl/ATELECTASIS.git
+gitlink=${1}
 git clone ${gitlink}
 program_dir_name=$(basename ${gitlink} )
 program_dir_name=${program_dir_name%.git}

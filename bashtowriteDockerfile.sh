@@ -6,5 +6,4 @@ echo 'COPY downloadcodefromgithub.sh /callfromgithub/ ' >> Dockerfile
 echo 'RUN chmod +x  /callfromgithub/downloadcodefromgithub.sh ' >> Dockerfile
 echo 'RUN /opt/conda/bin/pip install vtk itk numpy ' >> Dockerfile
 echo 'RUN apt install -y nano ' >> Dockerfile
-'
 
