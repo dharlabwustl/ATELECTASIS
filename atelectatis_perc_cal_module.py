@@ -16,7 +16,7 @@ from skimage import exposure
 import cv2
 import pandas as pd
 
-sys.path.append("/storage1/fs1/dharr/Active/ATUL/PROJECTS/NWU/SOFTWARE/")
+# sys.path.append("/storage1/fs1/dharr/Active/ATUL/PROJECTS/NWU/SOFTWARE/")
  
 from utilities_simple_forlungproject import *
 
@@ -56,17 +56,17 @@ def saveslicesofnifti_1(filename,in_range=(0,200),savetodir="",ismask=False):
 
 # In[4]:
 
-
-grayscale_dir=sys.argv[1] #"/storage1/fs1/dharr/Active/ATUL/PROJECTS/LUNGS/DATA/Lungs/RENAMEDUNIQUE"
+grayfilename=sys.argv[1]
+grayscale_dir=os.path.dirname(grayfilename) #sys.argv[1] #"/storage1/fs1/dharr/Active/ATUL/PROJECTS/LUNGS/DATA/Lungs/RENAMEDUNIQUE"
 
 
 # In[5]:
 
 
 masks_dir=sys.argv[2] #os.path.join(grayscale_dir,'lungmask') #"/storage1/fs1/dharr/Active/ATUL/PROJECTS/LUNGS/DATA/FromPorche/output_directory/"
-vesselmasks_dir=sys.argv[3] #os.path.join(grayscale_dir,'vessel_output_directory')  ##"/storage1/fs1/dharr/Active/ATUL/PROJECTS/LUNGS/DATA/FromPorche/vessel_output_directory/"
-vesselmasks_modified_dir=sys.argv[4] #os.path.join(grayscale_dir,'vessel_mod_output_directory_nooc') ##"/storage1/fs1/dharr/Active/ATUL/PROJECTS/LUNGS/DATA/FromPorche/vessel_mod_output_directory/"
-atelectasis_mask_dir=sys.argv[5] 
+vesselmasks_dir=sys.argv[2] #os.path.join(grayscale_dir,'vessel_output_directory')  ##"/storage1/fs1/dharr/Active/ATUL/PROJECTS/LUNGS/DATA/FromPorche/vessel_output_directory/"
+vesselmasks_modified_dir=sys.argv[2] #os.path.join(grayscale_dir,'vessel_mod_output_directory_nooc') ##"/storage1/fs1/dharr/Active/ATUL/PROJECTS/LUNGS/DATA/FromPorche/vessel_mod_output_directory/"
+atelectasis_mask_dir=sys.argv[2]
 # output_dir=atelectasis_mask_dir #os.path.join(grayscale_dir,'percentage_output_directory_nooc')  ##"/storage1/fs1/dharr/Active/ATUL/PROJECTS/LUNGS/DATA/FromPorche/percentage_output_directory/"
 # command="mkdir -p " + output_dir
 # subprocess.call(command,shell=True)
@@ -77,7 +77,7 @@ counter=0
 sigma=2   
 alpha1=5  
 alpha2=15
-each_grayfile=sys.argv[9] #all_gray_files[0]
+each_grayfile=grayfilename #sys.argv[3] #all_gray_files[0]
 grayfile_basename_noext=os.path.basename(each_grayfile).split(".nii")[0]
 vesselmask_filename=os.path.join(vesselmasks_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) +'_vessels.nii.gz') #'_vessels.nii.gz')
 vesselmask_itk_arr_itk_fn=os.path.join(vesselmasks_modified_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) +'_vessels_modfd.nii.gz') 
@@ -126,10 +126,10 @@ if os.path.exists(vesselmask_filename):
 
 
 
-image_dir=sys.argv[6] #os.path.join(grayscale_dir,'imagesforpdfs_nooc')
+image_dir=sys.argv[3] #os.path.join(grayscale_dir,'imagesforpdfs_nooc')
 
 
-grayfilename=sys.argv[9]  #all_gray_files[0]
+ #all_gray_files[0]
 
 grayfile_basename_noext=os.path.basename(grayfilename).split(".nii")[0]
 
@@ -166,7 +166,7 @@ for file in files_with1ext:
 
 
 counter=0
-calculation_output_directory=sys.argv[7]  #os.path.join(grayscale_dir,'calculation_output_directory_nooc')
+calculation_output_directory=sys.argv[4]  #os.path.join(grayscale_dir,'calculation_output_directory_nooc')
 atelectasis_percentage_list=[]
 grayfile_basename_noext=os.path.basename(grayfilename).split(".nii")[0]
 atelectasis_filename=os.path.join(atelectasis_mask_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) + "_OCVOC.nii.gz")
@@ -198,7 +198,7 @@ filename_=[]
 filename_.append([os.path.basename(original_ct_fn).split(".nii")[0]])
 filename_df=pd.DataFrame(filename_)
 filename_df.columns=['FILENAME']
-latexfile_directory=sys.argv[8]  #os.path.join(grayscale_dir,"TEXFILES")
+latexfile_directory=sys.argv[5]  #os.path.join(grayscale_dir,"TEXFILES")
 latexfilename=os.path.join(latexfile_directory,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'.tex')
 
 latex_start(latexfilename)
