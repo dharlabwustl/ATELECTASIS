@@ -77,6 +77,7 @@ counter=0
 sigma=1 #2
 alpha1=5  
 alpha2=15
+threshol_prefix="_{}_{}_{}_".format(sigma,alpha1,alpha2)
 each_grayfile=grayfilename #sys.argv[3] #all_gray_files[0]
 grayfile_basename_noext=os.path.basename(each_grayfile).split(".nii")[0]
 vesselmask_filename=os.path.join(vesselmasks_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) +'_vessels.nii.gz') #'_vessels.nii.gz')
@@ -205,12 +206,12 @@ latex_start(latexfilename)
 latex_begin_document(latexfilename)
 latex_start_tableNc_noboundary(latexfilename,1)
 filename_df = filename_df.rename(columns=lambda name: name.replace('_', '-'))
-latex_insert_line_nodek(latexfilename,text=filename_df.style.to_latex()) #(index=False))
+latex_insert_line_nodek(latexfilename,text=filename_df.to_latex(index=False)) #(index=False))
 latex_end_table2c(latexfilename)
 latex_start_tableNc_noboundary(latexfilename,1)
 atelectasis_percentage_df=atelectasis_percentage_df.drop(['FILENAME'], axis=1)
 atelectasis_percentage_df = atelectasis_percentage_df.rename(columns=lambda name: name.replace('_', '-'))
-latex_insert_line_nodek(latexfilename,text=atelectasis_percentage_df.style.to_latex()) #(index=False))
+latex_insert_line_nodek(latexfilename,text=atelectasis_percentage_df.to_latex(index=False)) #(index=False))
 latex_end_table2c(latexfilename)
 for each_slice_file in sorted(glob.glob(os.path.join(directory_tosave_images,os.path.basename(original_ct_fn).split(".nii")[0]+'_lung_gray_seg_LTRCLobes_R231_bw*.jpg'))) : ##original_ct_fn_nib_data.shape[2]):
 #     print(each_slice_file)
@@ -220,14 +221,14 @@ for each_slice_file in sorted(glob.glob(os.path.join(directory_tosave_images,os.
 
     grayscale_slice_fn=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+str("{:03d}".format(slice_num))+".jpg" )
     if     os.path.exists(grayscale_slice_fn):
-        print(grayscale_slice_fn)
-    vessel_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_1_5_15_vessels_modfd'+ str("{:03d}".format(slice_num))+".jpg" )
+        print(grayscale_slice_fn) #_1_5_15_
+    vessel_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+threshol_prefix+'vessels_modfd'+ str("{:03d}".format(slice_num))+".jpg" )
     if     os.path.exists(vessel_image):
         print(vessel_image)
-    atelectasismask_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_1_5_15_OCVOC'+ str("{:03d}".format(slice_num))+".jpg" )
+    atelectasismask_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+threshol_prefix+'OCVOC'+ str("{:03d}".format(slice_num))+".jpg" )
     if     os.path.exists(atelectasismask_image):
         print(atelectasismask_image)
-    atelectasismask_gray_superim_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_1_5_15_OCVOCsuperimp'+ str("{:03d}".format(slice_num))+".jpg" )
+    atelectasismask_gray_superim_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+threshol_prefix+'OCVOCsuperimp'+ str("{:03d}".format(slice_num))+".jpg" )
     if     os.path.exists(atelectasismask_gray_superim_image):
         print(atelectasismask_gray_superim_image)
     if os.path.exists(grayscale_slice_fn) and os.path.exists(vessel_image) and os.path.exists(atelectasismask_image) and os.path.exists(atelectasismask_gray_superim_image):
