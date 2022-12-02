@@ -156,7 +156,7 @@ counter=counter+1
 for file in files_with1ext:
     number=file[-7:-4]
     basefile=file.split(derived_img_ext)[0] + str(number)+".jpg"
-    print(basefile)
+#     print(basefile)
     if os.path.exists(basefile):
 #             print(basefile)
 #     print(file)
@@ -221,18 +221,13 @@ for each_slice_file in sorted(glob.glob(os.path.join(directory_tosave_images,os.
     grayscale_slice_fn=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+str("{:03d}".format(slice_num))+".jpg" )
     if     os.path.exists(grayscale_slice_fn):
         print(grayscale_slice_fn)
-    vessel_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_1_5_15_vessels_modfd'+ str("{:03d}".format(slice_num))+".jpg" )
-
-    # vessel_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_vessels_modfd'+ str("{:03d}".format(slice_num))+".jpg" )
-
+    vessel_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_vessels_modfd'+ str("{:03d}".format(slice_num))+".jpg" )
     if     os.path.exists(vessel_image):
         print(vessel_image)
-    atelectasismask_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_1_5_15_OCVOC'+ str("{:03d}".format(slice_num))+".jpg" )
-    # atelectasismask_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_OCVOC'+ str("{:03d}".format(slice_num))+".jpg" )
+    atelectasismask_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_OCVOC'+ str("{:03d}".format(slice_num))+".jpg" )
     if     os.path.exists(atelectasismask_image):
         print(atelectasismask_image)
-    # atelectasismask_gray_superim_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_OCVOCsuperimp'+ str("{:03d}".format(slice_num))+".jpg" )
-    atelectasismask_gray_superim_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_1_5_15_OCVOCsuperimp'+ str("{:03d}".format(slice_num))+".jpg" )
+    atelectasismask_gray_superim_image=os.path.join(directory_tosave_images,re.sub('[^a-zA-Z0-9]', '_',os.path.basename(original_ct_fn).split(".nii")[0])+'_2_5_15_OCVOCsuperimp'+ str("{:03d}".format(slice_num))+".jpg" )
     if     os.path.exists(atelectasismask_gray_superim_image):
         print(atelectasismask_gray_superim_image)
     if os.path.exists(grayscale_slice_fn) and os.path.exists(vessel_image) and os.path.exists(atelectasismask_image) and os.path.exists(atelectasismask_gray_superim_image):
