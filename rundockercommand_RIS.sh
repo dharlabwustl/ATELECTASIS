@@ -16,6 +16,6 @@ cp ${data_directory}/*.nii*  /workinginput/
 #rm -r workingoutput/*
 #rm -r ZIPFILEDIR/*
 #rm -r outputinsidedocker/*
-rm -r software/*
-export LSF_DOCKER_VOLUMES="$HOME:$HOME  /storage1/fs1/dharr/Active:/storage1/fs1/dharr/Active $PWD/software:/software  $PWD/workinginput:/workinginput  $PWD/workingoutput:/workingoutput  $PWD/ZIPFILEDIR:/ZIPFILEDIR  $PWD/outputinsidedocker:/outputinsidedocker "
+rm -r software/* #$HOME:$HOME  /storage1/fs1/dharr/Active:/storage1/fs1/dharr/Active
+export LSF_DOCKER_VOLUMES="$PWD/software:/software  $PWD/workinginput:/workinginput  $PWD/workingoutput:/workingoutput  $PWD/ZIPFILEDIR:/ZIPFILEDIR  $PWD/outputinsidedocker:/outputinsidedocker "
 bsub -Is -q general-interactive -M 16GB -R "rusage[mem=16GB]"  -G compute-dharr -a 'docker(sharmaatul11/'${imagename}':latest)'  /callfromgithub/downloadcodefromgithub.sh https://github.com/dharlabwustl/ATELECTASIS.git

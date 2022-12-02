@@ -1,6 +1,6 @@
 FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04 
 RUN apt-get update 
-RUN apt-get install -y python3 pip 
+RUN apt-get install -y python3 pip git vim
 RUN apt-get install ffmpeg libsm6 libxext6  -y 
 RUN mkdir -p /callfromgithub 
 RUN chmod 755 /callfromgithub 

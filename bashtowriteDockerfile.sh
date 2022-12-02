@@ -2,7 +2,7 @@
 #echo 'FROM nvcr.io/nvidia/rapidsai/rapidsai-core:22.10-cuda11.2-base-ubuntu20.04-py3.9 ' > Dockerfile
 echo 'FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04 ' > Dockerfile
 echo 'RUN apt-get update ' >> Dockerfile
-echo 'RUN apt-get install -y python3 pip ' >> Dockerfile
+echo 'RUN apt-get install -y python3 pip git vim' >> Dockerfile
 
 #     RUN apt-get install ffmpeg libsm6 libxext6  -y
 echo 'RUN apt-get install ffmpeg libsm6 libxext6  -y ' >> Dockerfile
