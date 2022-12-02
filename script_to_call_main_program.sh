@@ -7,15 +7,15 @@
 #INPUTFILENAME=${1}
 OUTPUTDIRNAME=/workingoutput #${2}
 ##############################LUNG SEGMENTATION ##########################################
-#for INPUTFILENAME in /workinginput/*.nii* ;
-#do
-#/opt/conda/envs/rapids/bin/python /software/lungsegmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
-#done
-#################################### VESSEL SEGMENTATION ###############################################
-#for INPUTFILENAME in /workinginput/*.nii* ;
-#do
-#/opt/conda/bin/python /software/vessel_segmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
-#done
+for INPUTFILENAME in /workinginput/*.nii* ;
+do
+/opt/conda/envs/rapids/bin/python /software/lungsegmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
+done
+################################### VESSEL SEGMENTATION ###############################################
+for INPUTFILENAME in /workinginput/*.nii* ;
+do
+/opt/conda/bin/python /software/vessel_segmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
+done
 CALCULATION_DIR=/calculation
 LATEX_DIR=/latex
 IMAGES_DIR=/images
