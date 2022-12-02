@@ -3,7 +3,7 @@
 # docker run -v $PWD/workinginput:/workinginput -v $PWD/workingoutput:/workingoutput -v $PWD/ZIPFILEDIR:/ZIPFILEDIR -v$PWD/output:/output  -it sharmaatul11/yashengcsfinfarctseg1  /Stroke_CT_Processing/call_preproc_segm_session_level_1.sh SNIPR_E03523 
 # docker build -t sharmaatul11/dicom2nifti_nwu_1 .
 imagename=atelectasissegmentation1:newrapids
-#./builddockerimage.sh ${imagename}
+./builddockerimage.sh ${imagename}
 mkdir workingoutput
 mkdir workinginput
 mkdir ZIPFILEDIR

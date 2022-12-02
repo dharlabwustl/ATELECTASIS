@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9badd5b1-df75-461b-a945-875443e6ff64" name="Changes" comment="Commit 4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/atelectatis_perc_cal_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/atelectatis_perc_cal_module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bashtowriteDockerfile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bashtowriteDockerfile.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rundockercommand.sh" beforeDir="false" afterPath="$PROJECT_DIR$/rundockercommand.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rundockercommand_RIS.sh" beforeDir="false" afterPath="$PROJECT_DIR$/rundockercommand_RIS.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670001385279</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Commit 4">
+      <created>1670002312776</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1670002312776</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

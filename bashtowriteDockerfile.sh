@@ -17,7 +17,7 @@ echo 'RUN chmod +x  /callfromgithub/downloadcodefromgithub.sh ' >> Dockerfile
 #echo 'RUN pip install  torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116 ' >> Dockerfile
 echo 'RUN /opt/conda/bin/pip install nibabel simpleitk  tensorflow-gpu wandb xlsxwriter natsort vtk itk numpy ' >> Dockerfile
 echo 'RUN  /opt/conda/envs/rapids/bin/pip install nibabel opencv-python lungmask' >> Dockerfile
-echo 'RUN /opt/conda/bin/pip install opencv-python scikit-image pandas '  >> Dockerfile
+echo 'RUN /opt/conda/bin/pip install opencv-python scikit-image pandas Jinja2'  >> Dockerfile
 #echo ' RUN conda install -n rapids -c menpo opencv ' >> Dockerfile
 #echo 'RUN /opt/conda/bin/pip install  torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116 ' >> Dockerfile
 #echo 'RUN /opt/conda/bin/pip install opencv-python pandas lungmask numba niwidgets' >> Dockerfile
