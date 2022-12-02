@@ -8,6 +8,19 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/atelectatis_perc_cal_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/atelectatis_perc_cal_module.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rundockercommand.sh" beforeDir="false" afterPath="$PROJECT_DIR$/rundockercommand.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/ATELECTASIS.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/atelectatis_perc_cal_module.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/bashtowriteDockerfile.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/builddockerimage.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/downloadcodefromgithub.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/edema_biomarker_allstepsSessionusinggithub.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/lungsegmentation_module.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/rundockercommand.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/rundockercommand_RIS.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/script_to_call_main_program.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/utilities_simple_forlungproject.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/software/ATELECTASIS/vessel_segmentation_module.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670002843006</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Commit 4">
+      <created>1670003609222</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1670003609222</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

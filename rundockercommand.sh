@@ -11,10 +11,12 @@ mkdir outputinsidedocker
 mkdir software
 mkdir calculation
 mkdir latex
+mkdir images
 sessionID=SNIPR_E03614 #SNIPR_E03516
 #rm -r workingoutput/*
 #rm -r ZIPFILEDIR/*
 #rm -r outputinsidedocker/*
 rm -r software/*
-docker run --gpus all -v $PWD/latex:/latex  -v $PWD/calculation:/calculation  -v $PWD/software:/software -v $PWD/workinginput:/workinginput -v $PWD/workingoutput:/workingoutput -v $PWD/ZIPFILEDIR:/ZIPFILEDIR -v $PWD/outputinsidedocker:/outputinsidedocker  -it sharmaatul11/${imagename}   /callfromgithub/downloadcodefromgithub.sh https://github.com/dharlabwustl/ATELECTASIS.git ##### ${sessionID} $XNAT_USER $XNAT_PASS https://snipr-dev-test1.nrg.wustl.edu 2 ##/software/call_combine_all_edemabiomarker_csvfile_projectlevel.sh  #${sessionID} $XNAT_USER $XNAT_PASS $XNAT_HOST #https://snipr-dev-test1.nrg.wustl.edu
+rm -r latex/*
+docker run --gpus all -v $PWD/images:/images -v $PWD/latex:/latex  -v $PWD/calculation:/calculation  -v $PWD/software:/software -v $PWD/workinginput:/workinginput -v $PWD/workingoutput:/workingoutput -v $PWD/ZIPFILEDIR:/ZIPFILEDIR -v $PWD/outputinsidedocker:/outputinsidedocker  -it sharmaatul11/${imagename}  # /callfromgithub/downloadcodefromgithub.sh https://github.com/dharlabwustl/ATELECTASIS.git  ##### ${sessionID} $XNAT_USER $XNAT_PASS https://snipr-dev-test1.nrg.wustl.edu 2 ##/software/call_combine_all_edemabiomarker_csvfile_projectlevel.sh  #${sessionID} $XNAT_USER $XNAT_PASS $XNAT_HOST #https://snipr-dev-test1.nrg.wustl.edu
 rm -r software/*
