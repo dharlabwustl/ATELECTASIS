@@ -204,10 +204,12 @@ latexfilename=os.path.join(latexfile_directory,re.sub('[^a-zA-Z0-9]', '_',os.pat
 latex_start(latexfilename)
 latex_begin_document(latexfilename)
 latex_start_tableNc_noboundary(latexfilename,1)
+filename_df = filename_df.rename(columns=lambda name: name.replace('_', '-'))
 latex_insert_line_nodek(latexfilename,text=filename_df.style.to_latex()) #(index=False))
 latex_end_table2c(latexfilename)
 latex_start_tableNc_noboundary(latexfilename,1)
 atelectasis_percentage_df=atelectasis_percentage_df.drop(['FILENAME'], axis=1)
+atelectasis_percentage_df = atelectasis_percentage_df.rename(columns=lambda name: name.replace('_', '-'))
 latex_insert_line_nodek(latexfilename,text=atelectasis_percentage_df.style.to_latex()) #(index=False))
 latex_end_table2c(latexfilename)
 for each_slice_file in sorted(glob.glob(os.path.join(directory_tosave_images,os.path.basename(original_ct_fn).split(".nii")[0]+'_lung_gray_seg_LTRCLobes_R231_bw*.jpg'))) : ##original_ct_fn_nib_data.shape[2]):
