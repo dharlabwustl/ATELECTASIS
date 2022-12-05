@@ -2,7 +2,7 @@
 # docker push  sharmaatul11/yashengcsfinfarctseg1 
 # docker run -v $workinginput:/workinginput -v $workingoutput:/workingoutput -v $ZIPFILEDIR:/ZIPFILEDIR -v$output:/output  -it sharmaatul11/yashengcsfinfarctseg1  /Stroke_CT_Processing/call_preproc_segm_session_level_1.sh SNIPR_E03523 
 # docker build -t sharmaatul11/dicom2nifti_nwu_1 .
-imagename=atelectasissegmentation
+imagename=atelectasissegmentation:rapids2dec22
 #./builddockerimage.sh ${imagename}
 prefix_dir="/storage1/fs1/dharr/Active/ATUL/PROJECTS/LUNGS/DATA/Lungs/RENAMEDUNIQUE/DATA1"
 
@@ -33,4 +33,4 @@ rm -r $calculation/*
 rm -r $images/*
 rm -r $latex/*
 export LSF_DOCKER_VOLUMES=" $images:/images  $latex:/latex $calculation:/calculation  $software:/software $software:/software  $workinginput:/workinginput  $workingoutput:/workingoutput  $ZIPFILEDIR:/ZIPFILEDIR  $outputinsidedocker:/outputinsidedocker "
-bsub -Is -q general-interactive -M 16GB -R "rusage[mem=16GB]"  -G compute-dharr -a 'docker(sharmaatul11/'${imagename}':latest)'  /callfromgithub/downloadcodefromgithub.sh https://github.com/dharlabwustl/ATELECTASIS.git
+bsub -Is -q general-interactive -M 16GB -gpu 'num=1:j_exclusive=yes:gmodel=TeslaV100_SXM2_32GB' -R "rusage[mem=16GB]"  -G compute-dharr -a 'docker(sharmaatul11/'${imagename}':latest)'  /callfromgithub/downloadcodefromgithub.sh https://github.com/dharlabwustl/ATELECTASIS.git
