@@ -241,6 +241,8 @@ for each_slice_file in sorted(glob.glob(os.path.join(directory_tosave_images,os.
 latex_end(latexfilename)
 
 
+command="pdflatex -output-directory="+os.path.dirname(latexfilename) + '  ' + latexfilename
+subprocess.call(command,shell=True)
 # # In[ ]:
 
 
