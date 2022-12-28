@@ -98,5 +98,5 @@
 
     # firefox https://wiki.xnat.org/documentation/xnat-developer-documentation/working-with-xnat-plugins/developing-xnat-plugins/xnat-data-type-development &
 
-curl  -u   $XNAT_USER:$XNAT_PASS  -X GET   $XNAT_HOST/data/projects/WashU/subjects/SNIPR02_S00096/experiments/SNIPR02_E00169/assessors?format=json # > ${sessionID}_${scnaID}.zip
-curl  -u   $XNAT_USER:$XNAT_PASS  -X GET   $XNAT_HOST/data/experiments/SNIPR02_E00033/scans/1/resources/110627/files/VHUH_447_CT_2_1_Tilt_1.nii
+# curl  -u   $XNAT_USER:$XNAT_PASS  -X GET   $XNAT_HOST/data/projects/WashU/subjects/SNIPR02_S00096/experiments/SNIPR02_E00169/assessors?format=json # > ${sessionID}_${scnaID}.zip
+# curl  -u   $XNAT_USER:$XNAT_PASS  -X GET   $XNAT_HOST/data/experiments/SNIPR02_E00033/scans/1/resources/110627/files/VHUH_447_CT_2_1_Tilt_1.nii
