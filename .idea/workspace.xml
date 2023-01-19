@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9badd5b1-df75-461b-a945-875443e6ff64" name="Changes" comment="Commit 4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lungatelectasis_calculationJan19_2023.sh" beforeDir="false" afterPath="$PROJECT_DIR$/lungatelectasis_calculationJan19_2023.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,13 +95,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669833426575</updated>
-    </task>
-    <task id="LOCAL-00001" summary="1st commit">
-      <created>1669833537900</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1669833537900</updated>
     </task>
     <task id="LOCAL-00002" summary="1st commit">
       <created>1669833574477</created>
@@ -440,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674156752467</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Commit 4">
+      <created>1674159859512</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1674159859512</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
