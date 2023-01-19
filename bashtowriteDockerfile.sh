@@ -11,8 +11,7 @@ echo 'RUN apt-get install ffmpeg libsm6 libxext6  -y ' >> Dockerfile
 #echo 'FROM pytorch/pytorch:1.13.0-cuda11.6-cudnn8-runtime ' > Dockerfile
 echo 'RUN mkdir -p /callfromgithub ' >> Dockerfile
 echo 'RUN chmod 755 /callfromgithub ' >> Dockerfile
-echo 'COPY downloadcodefromgithub.sh /callfromgithub/ ' >> Dockerfile
-echo 'RUN chmod +x  /callfromgithub/downloadcodefromgithub.sh ' >> Dockerfile
+
 
 #echo 'RUN pip install  torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116 ' >> Dockerfile
 echo 'RUN /opt/conda/bin/pip install nibabel simpleitk  tensorflow-gpu wandb xlsxwriter natsort vtk itk numpy ' >> Dockerfile
@@ -22,6 +21,8 @@ echo 'RUN apt-get install -y  texlive-full ' >> Dockerfile
 echo 'RUN apt update -y ' >> Dockerfile
 echo 'RUN apt upgrade -y ' >>Dockerfile
 echo 'RUN apt autoremove -y ' >>Dockerfile
+echo 'COPY downloadcodefromgithub.sh /callfromgithub/ ' >> Dockerfile
+echo 'RUN chmod +x  /callfromgithub/downloadcodefromgithub.sh ' >> Dockerfile
 #cat Dockerfile_lowerpart >> Dockerfile
 #echo ' RUN conda install -n rapids -c menpo opencv ' >> Dockerfile
 #echo 'RUN /opt/conda/bin/pip install  torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116 ' >> Dockerfile
