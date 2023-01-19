@@ -337,7 +337,14 @@ snipr_output_foldername="LUNG_ATELECTASIS"
 file_suffixes=(  .pdf .csv ) #sys.argv[5]
 for file_suffix in ${file_suffixes[@]}
 do
-    copyoutput_to_snipr  ${sessionID} ${scanID} "${OUTPUTDIRNAME}"  ${snipr_output_foldername}  ${file_suffix}
+    copyoutput_to_snipr  ${sessionID} ${scanID} "${CALCULATION_DIR}"  ${snipr_output_foldername}  ${file_suffix}
 done
 ######################################################################################################################
 
+for file_suffix in ${file_suffixes[@]}
+do
+    copyoutput_to_snipr  ${sessionID} ${scanID} "${LATEX_DIR}"  ${snipr_output_foldername}  ${file_suffix}
+done
+#CALCULATION_DIR=/calculation
+#LATEX_DIR=/latex
+#IMAGES_DIR=/images
