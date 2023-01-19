@@ -334,7 +334,7 @@ lung_atelectasis_calculation
 ######################################################################################################################
 ## COPY IT TO THE SNIPR RESPECTIVE SCAN RESOURCES
 snipr_output_foldername="LUNG_ATELECTASIS"
-file_suffixes=(  .pdf .mat .csv ) #sys.argv[5]
+file_suffixes=(  .pdf .csv ) #sys.argv[5]
 for file_suffix in ${file_suffixes[@]}
 do
     copyoutput_to_snipr  ${sessionID} ${scanID} "${final_output_directory}"  ${snipr_output_foldername}  ${file_suffix}  
