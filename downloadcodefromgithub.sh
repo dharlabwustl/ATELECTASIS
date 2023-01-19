@@ -1,5 +1,6 @@
 #!/bin/bash
 cd /software/
+echo ${4}
 git_link=${4}
 git clone ${git_link} #https://github.com/dharlabwustl/EDEMA_MARKERS_PROD.git
 y=${git_link%.git}
