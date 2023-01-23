@@ -3,7 +3,7 @@
   "description": "Apply lung_atelectasis_calculation",
   "version": "1.0",
   "schema-version": "1.0",
-  "image": "sharmaatul11/dicom2nifti_nwu_1:latest",
+  "image": "registry.nrg.wustl.edu/docker/nrg-repo/sharmaatul11/atelectasissegmentation2:latest",
   "type": "docker",
   "working-directory": "/callfromgithub",
   "command-line": " /callfromgithub/downloadcodefromgithub.sh #SESSION_ID# $XNAT_USER $XNAT_PASS https://github.com/dharlabwustl/ATELECTASIS.git 2  https://snipr.wustl.edu",
