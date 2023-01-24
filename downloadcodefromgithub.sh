@@ -1,4 +1,6 @@
 #!/bin/bash
+TORCH_HOME="/software"
+SENTENCE_TRANSFORMERS_HOME="/software"
 cd /software/
 echo ${4}
 git_link=${4}
