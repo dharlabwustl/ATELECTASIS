@@ -1,5 +1,5 @@
 #!/bin/bash
-export TORCH_HOME=/software
+#export TORCH_HOME=/software
 export SENTENCE_TRANSFORMERS_HOME=/software
 cd /software/
 echo ${4}
