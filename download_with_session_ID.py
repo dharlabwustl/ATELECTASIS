@@ -42,9 +42,12 @@ def call_get_all_selected_scan_in_a_project():
 def call_get_all_EDEMA_BIOMARKER_csvfiles_of_allselectedscan():
     working_directory=sys.argv[1]
     get_all_EDEMA_BIOMARKER_csvfiles_of_ascan(working_directory)
-    
-    
-    
+
+
+def call_get_all_CSV_PDF_OF_A_RESOURCE_IN_A_PROJECT():
+    working_directory=sys.argv[1]
+    resource_dir=sys.argv[2]
+    get_all_CSV_PDFFILES_of_ascan(working_directory,resource_dir)
 def get_all_EDEMA_BIOMARKER_csvfiles_of_ascan(dir_to_receive_the_data):
     for each_csvfile in glob.glob(os.path.join(dir_to_receive_the_data,'SNIPR*.csv')):
         df_selected_scan=pd.read_csv(each_csvfile)
@@ -66,8 +69,28 @@ def get_all_EDEMA_BIOMARKER_csvfiles_of_ascan(dir_to_receive_the_data):
                         downloadresourcefilewithuri_py(each_file_inEDEMA_BIOMARKERS,dir_to_receive_the_data)
                         # break
                 # break 
-            
 
+def get_all_CSV_PDFFILES_of_ascan(dir_to_receive_the_data,resource_dir='LUNG_ATELECTASIS'):
+    for each_csvfile in glob.glob(os.path.join(dir_to_receive_the_data,'SNIPR*.csv')):
+        df_selected_scan=pd.read_csv(each_csvfile)
+        # resource_dir='EDEMA_BIOMARKER'
+        # print(df_selected_scan)
+        for item_id1, each_selected_scan in df_selected_scan.iterrows():
+            scan_URI=each_selected_scan['URI'].split('/resources/')[0] #/data/experiments/SNIPR_E03516/scans/2/resources/110269/files/BJH_002_11112019_1930_2.nii
+            print(scan_URI)
+            metadata_EDEMA_BIOMARKERS=get_resourcefiles_metadata(scan_URI,resource_dir)
+            if len(metadata_EDEMA_BIOMARKERS) >0:
+                metadata_EDEMA_BIOMARKERS_df=pd.DataFrame(metadata_EDEMA_BIOMARKERS)
+                print(metadata_EDEMA_BIOMARKERS_df)
+                for item_id, each_file_inEDEMA_BIOMARKERS in metadata_EDEMA_BIOMARKERS_df.iterrows():
+                    if '.csv' in each_file_inEDEMA_BIOMARKERS['URI']:
+                        print("YES IT IS CSV FILE FOR ANALYSIS")
+                        downloadresourcefilewithuri_py(each_file_inEDEMA_BIOMARKERS,dir_to_receive_the_data)
+                    if '.pdf' in each_file_inEDEMA_BIOMARKERS['URI']:
+                        print("YES IT IS PDF FILE FOR VISUALIZATION")
+                        downloadresourcefilewithuri_py(each_file_inEDEMA_BIOMARKERS,dir_to_receive_the_data)
+                        # break
+                # break
     
     
 # def combine_all_csvfiles_of_edema_biomarker(projectId,dir_to_receive_the_data):
