@@ -362,7 +362,7 @@ get_all_CSV_PDF_OF_A_RESOURCE_IN_A_PROJECT ${working_dir} ${snipr_output_foldern
 
 ############################## combine_all_csvfiles_of_edema_biomarker   #############################################
 extension_csv="_OCVOC_.csv"
-combined_csv_outputfilename=${projectID}_EDEMA_BIOMARKERS_COMBINED_${extension_csv}
+combined_csv_outputfilename=${projectID}_${snipr_output_foldername}_${extension_csv}
 output_directory="/workingoutput"
 combine_all_csvfiles_of_edema_biomarker  ${working_dir} ${output_directory} ${extension_csv} ${combined_csv_outputfilename}
 
@@ -370,12 +370,17 @@ combine_all_csvfiles_of_edema_biomarker  ${working_dir} ${output_directory} ${ex
 ## COPY IT TO THE SNIPR RESPECTIVE PROJECT RESOURCES
 
 
-file_suffixes=(  .pdf .csv ) #sys.argv[5]
+file_suffixes=(   .csv ) #sys.argv[5]
 for file_suffix in ${file_suffixes[@]}
 do
     copyoutput_to_snipr_projectlevel  ${projectID} ${output_directory} "${snipr_output_foldername}"   ${file_suffix}
 done
-
+file_suffixes=(  .pdf ) #sys.argv[5]
+for file_suffix in ${file_suffixes[@]}
+do
+#    copyoutput_to_snipr_projectlevel  ${projectID} ${working_dir} "${snipr_output_foldername}"   ${file_suffix}
+     copyoutput_to_snipr_projectlevel  ${projectID} ${working_dir} "${snipr_output_foldername}"   ${file_suffix}
+done
 #
 ############################### get_all_selected_scan_in_a_project   #############################################
 ### 1. download all the sessions list. 2. For each session download its metadata. 3. if it has type == z-axial get its metadata 4. If the scan metadata URI has 'EDEMA_BIOMARKERS' in it
