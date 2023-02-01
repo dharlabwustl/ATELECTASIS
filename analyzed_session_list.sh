@@ -371,13 +371,15 @@ pdffilelist_file=${1} # =sys.argv[1] #"workingoutput/allfilesinprojectoutput.csv
 selectedniftifilelist_file=${2} # =sys.argv[2]  #"workingoutput/COLI_EDEMA_BIOMARKER_ANALYZED.csv"
 allsessionlist_file=${3} # = sys.argv[3]  #"workingoutput/all_sessions.csv"
 output_list_csvfile=${4} #sys.argv[4]  #"workingoutput/all_sessions_labeled.csv"
+pdffilelist_file_ext=${5} #sys.argv[5]
+stringtofilterallsessionlist=${6} #sys.argv[6]
 
 
 python3 -c "
 import sys
 sys.path.append('/software');
 from download_with_session_ID import *;
-call_list_analyzed_session()"  ${pdffilelist_file} ${selectedniftifilelist_file} ${allsessionlist_file}  ${output_list_csvfile}
+call_list_analyzed_session()"  ${pdffilelist_file} ${selectedniftifilelist_file} ${allsessionlist_file}  ${output_list_csvfile} ${pdffilelist_file_ext} ${stringtofilterallsessionlist}
 }
 
 projectID=${1}
