@@ -107,7 +107,7 @@ def get_all_CSV_PDFFILES_of_ascan(dir_to_receive_the_data,resource_dir='LUNG_ATE
                         # break
                 # break
 
-def list_analyzed_session(pdffilelist_file,selectedniftifilelist_file,allsessionlist_file,output_list_csvfile):
+def list_analyzed_session(pdffilelist_file,selectedniftifilelist_file,allsessionlist_file,output_list_csvfile,pdffilelist_file_ext=".pdf",):
     file1=pdffilelist_file #"workingoutput/allfilesinprojectoutput.csv"
     file2=selectedniftifilelist_file #"workingoutput/COLI_EDEMA_BIOMARKER_ANALYZED.csv"
     file3=allsessionlist_file #"workingoutput/all_sessions.csv"
@@ -115,7 +115,7 @@ def list_analyzed_session(pdffilelist_file,selectedniftifilelist_file,allsession
     df2=pd.read_csv(file2)
     columname='NIFTIFILENAME'
     df1[columname] = df1['Name']
-    df1[['NIFTIFILENAME','RESTOFTHENAME']] =df1.NIFTIFILENAME.str.split("_thresh", expand = True)
+    df1[['NIFTIFILENAME','RESTOFTHENAME']] =df1.NIFTIFILENAME.str.split(pdffilelist_file_ext, expand = True)
     # aa.to_csv(csvfile,index=False)
     df1=df1[df1['Name'].str.contains('.pdf')]
     df2['SESSION_ID'] = df2['URI'].str.split('/').str[3]
