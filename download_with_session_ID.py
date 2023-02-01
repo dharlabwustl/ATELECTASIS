@@ -136,6 +136,7 @@ def list_analyzed_session(pdffilelist_file,selectedniftifilelist_file,allsession
     df5['ANALYZED']=0
 
     df5.loc[df5["NIFTIFILENAME"].str.len()>1,'ANALYZED']=1 #.value_counts()
+    df5=df5[df5["NIFTIFILENAME"].str.contains('LUNG')]
     df5.to_csv(output_list_csvfile,index=False)
     # df5.loc[df["NIFTIFILENAME"].str.len() > 1 , "gender"] = 1
     # df5
