@@ -406,7 +406,9 @@ pdffilelist_file=${output_directory}/allfilesinprojectoutput.csv
 selectedniftifilelist_file=${output_directory}/${combined_csv_outputfilename}
 allsessionlist_file=${output_directory}/all_sessions.csv
 output_list_csvfile="${output_directory}/${projectID}_${snipr_output_foldername}_ANALYZED_LIST_LABELED${extension_csv}"
-create_list_analyzed_session  ${pdffilelist_file} ${selectedniftifilelist_file} ${allsessionlist_file}  ${output_list_csvfile}
+pdffilelist_file_ext=".pdf" #${5} #sys.argv[5]
+stringtofilterallsessionlist="LUNG" #${6} #sys.argv[6]
+create_list_analyzed_session  ${pdffilelist_file} ${selectedniftifilelist_file} ${allsessionlist_file}  ${output_list_csvfile}  ${pdffilelist_file_ext} ${stringtofilterallsessionlist}
 cp ${output_list_csvfile} ${final_output_directory}
 
 file_suffixes=(  .csv ) #sys.argv[5]
