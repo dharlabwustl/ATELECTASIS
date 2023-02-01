@@ -38,7 +38,22 @@ def call_get_all_selected_scan_in_a_project():
     working_directory=sys.argv[2]
     get_all_selected_scan_in_a_project(projectId,working_directory)
 
-
+def call_combine_all_csvfiles_of_edema_biomarker_withprefix():
+    working_directory=sys.argv[1]
+    working_directory_tocombinecsv=sys.argv[2]
+    prefix=sys.argv[3]
+    outputfilename=sys.argv[4]
+    combinecsvs_withprefix(working_directory,working_directory_tocombinecsv,outputfilename,prefix)
+def combinecsvs_withprefix(inputdirectory,outputdirectory,outputfilename,prefix):
+    outputfilepath=os.path.join(outputdirectory,outputfilename)
+    extension = 'csv'
+    all_filenames = [i for i in glob.glob(os.path.join(inputdirectory,'{}*.{}'.format(prefix,extension)))]
+    #    os.chdir(inputdirectory)
+    #combine all files in the list
+    combined_csv = pd.concat([pd.read_csv(f) for f in all_filenames ])
+    combined_csv = combined_csv.drop_duplicates()
+    #export to csv
+    combined_csv.to_csv(outputfilepath, index=False, encoding='utf-8-sig')
 def call_get_all_EDEMA_BIOMARKER_csvfiles_of_allselectedscan():
     working_directory=sys.argv[1]
     get_all_EDEMA_BIOMARKER_csvfiles_of_ascan(working_directory)
