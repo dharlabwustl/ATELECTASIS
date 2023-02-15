@@ -309,7 +309,7 @@ get_maskfile_scan_metadata()" ${sessionId}  ${scanId}  ${resource_foldername} ${
 niftifile_csvfilename=${working_dir}/'this_session_final_ct.csv'
 get_nifti_scan_uri ${sessionID}  ${working_dir} ${niftifile_csvfilename}
 copy_scan_data ${niftifile_csvfilename} ${working_dir} 
-lung_atelectasis_calculation
+#lung_atelectasis_calculation
 
 
 
