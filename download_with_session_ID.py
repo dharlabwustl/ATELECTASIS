@@ -124,12 +124,16 @@ def list_analyzed_session(pdffilelist_file,selectedniftifilelist_file,allsession
     columname='NIFTIFILENAME'
     df2[columname] = df2['Name']
     df2[['NIFTIFILENAME','RESTOFTHENAME']] =df2.NIFTIFILENAME.str.split(".nii", expand = True)
+    print(df1)
+    print(df2)
     df3 = pd.merge(df1, df2, left_on='NIFTIFILENAME', right_on='NIFTIFILENAME')
     df3=df3[['NIFTIFILENAME','SESSION_ID']]
+    print(df3)
     df4=pd.read_csv(file3)
     df4=df4[df4['label'].str.contains(stringtofilterallsessionlist)]
     df4['SESSION_NAME']=df4[['label']]
     df4=df4[['ID','SESSION_NAME']]
+    print(df4)
     # df4=df4[['ID','label']]
 
     df5 = pd.merge(df4, df3, right_on='SESSION_ID', left_on='ID',how='outer')
