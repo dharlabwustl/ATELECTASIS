@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9badd5b1-df75-461b-a945-875443e6ff64" name="Changes" comment="Commit 4">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/atelectatis_perc_cal_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/atelectatis_perc_cal_module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lungatelectasis_calculationJan19_2023.sh" beforeDir="false" afterPath="$PROJECT_DIR$/lungatelectasis_calculationJan19_2023.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,13 +95,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669833426575</updated>
-    </task>
-    <task id="LOCAL-00058" summary="Commit 4">
-      <created>1674584875811</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1674584875811</updated>
     </task>
     <task id="LOCAL-00059" summary="Commit 4">
       <created>1674585646321</created>
@@ -440,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685646637026</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Commit 4">
+      <created>1685646963059</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1685646963059</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

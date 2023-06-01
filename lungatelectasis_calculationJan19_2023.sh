@@ -22,15 +22,15 @@ lung_atelectasis_calculation()
   #INPUTFILENAME=${1}
 
   #############################LUNG SEGMENTATION ##########################################
-#  for INPUTFILENAME in ${working_dir}/*.nii* ;
-#  do
-#  /opt/conda/envs/rapids/bin/python /software/lungsegmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
-#  done
-#  ################################### VESSEL SEGMENTATION ###############################################
-#  for INPUTFILENAME in ${working_dir}/*.nii* ;
-#  do
-#  /opt/conda/bin/python /software/vessel_segmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
-#  done
+  for INPUTFILENAME in ${working_dir}/*.nii* ;
+  do
+  /opt/conda/envs/rapids/bin/python /software/lungsegmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
+  done
+  ################################### VESSEL SEGMENTATION ###############################################
+  for INPUTFILENAME in ${working_dir}/*.nii* ;
+  do
+  /opt/conda/bin/python /software/vessel_segmentation_module.py ${INPUTFILENAME} ${OUTPUTDIRNAME}
+  done
 
   for INPUTFILENAME in ${working_dir}/*.nii* ;
   do
