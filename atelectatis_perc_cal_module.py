@@ -32,7 +32,18 @@ def mask_on_image(grayimagefile,maskimagefile,ext_img='jpg'):
     cv2.imwrite(filetoseave,I)
     return filetoseave
 
-
+def mask_on_image_1(thisgray,thismask,maskimagefile,slice_num,ext_img='jpg'):
+    slice_3_layer= np.zeros([thisgray.shape[0],thisgray.shape[1],3])
+    slice_3_layer[:,:,0]= thisgray #imgray1
+    slice_3_layer[:,:,1]= thisgray #imgray1
+    slice_3_layer[:,:,2]= thisgray# imgray1
+    slice_3_layer[:,:,0][thismask>0]=0
+    slice_3_layer[:,:,1][thismask>0]=0
+    slice_3_layer[:,:,2][thismask>0]=255
+    # slice_num=maskimagefile[-7:-4]
+    filetoseave=maskimagefile.split(slice_num+"."+ext_img)[0] +"superimp"+ str(slice_num)+"." + ext_img
+    cv2.imwrite(filetoseave,slice_3_layer)
+    return filetoseave
 def saveslicesofnifti_1(filename,in_range=(0,200),savetodir="",ismask=False):
     filename_nib=nib.load(filename)
     filename_gray_data_np=filename_nib.get_fdata()
@@ -158,10 +169,13 @@ for file in files_with1ext:
     number=file[-7:-4]
     basefile=file.split(derived_img_ext)[0] + str(number)+".jpg"
 #     print(basefile)
+    atelectasis_filename_nib_data=nib.load(atelectasis_filename).get_fdata() #os.path.join(atelectasis_mask_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) + "_OCVOC.nii.gz")
+    grayfilename_nib_data=nib.load(grayfilename).get_fdata()
     if os.path.exists(basefile):
 #             print(basefile)
 #     print(file)
-        filename1=mask_on_image(basefile,file,ext_img='jpg')
+#         filename1=mask_on_image(basefile,file,ext_img='jpg')
+        filename1=mask_on_image_1(grayfilename_nib_data[:,:,int(number)],atelectasis_filename_nib_data[:,:,int(number)],basefile,number,file,ext_img='jpg')
 #     print(file)
 
 
