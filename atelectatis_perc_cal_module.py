@@ -175,7 +175,7 @@ for file in files_with1ext:
 #             print(basefile)
 #     print(file)
 #         filename1=mask_on_image(basefile,file,ext_img='jpg')
-        filename1=mask_on_image_1(grayfilename_nib_data[:,:,int(number)],atelectasis_filename_nib_data[:,:,int(number)],basefile,number,file,ext_img='jpg')
+        filename1=mask_on_image_1(grayfilename_nib_data[:,:,int(number)],atelectasis_filename_nib_data[:,:,int(number)],file,number,ext_img='jpg')
 #     print(file)
 
 
