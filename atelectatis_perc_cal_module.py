@@ -171,6 +171,8 @@ for file in files_with1ext:
 #     print(basefile)
     atelectasis_filename_nib_data=nib.load(atelectasis_filename).get_fdata() #os.path.join(atelectasis_mask_dir,grayfile_basename_noext+ "_" +str(sigma) +"_" +str(alpha1) +"_" + str(alpha2) + "_OCVOC.nii.gz")
     grayfilename_nib_data=nib.load(grayfilename).get_fdata()
+    in_range=(-400,200)
+    grayfilename_nib_data=exposure.rescale_intensity( grayfilename_nib_data , in_range=(in_range[0], in_range[1]))
     if os.path.exists(basefile):
 #             print(basefile)
 #     print(file)
