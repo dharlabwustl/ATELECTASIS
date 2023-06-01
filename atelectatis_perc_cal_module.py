@@ -31,8 +31,18 @@ def mask_on_image(grayimagefile,maskimagefile,ext_img='jpg'):
     filetoseave=maskimagefile.split(slice_num+"."+ext_img)[0] +"superimp"+ str(slice_num)+"." + ext_img
     cv2.imwrite(filetoseave,I)
     return filetoseave
-
-def mask_on_image_1(thisgray,thismask,maskimagefile,slice_num,ext_img='jpg'):
+def mask_on_image_2(grayimagefile,maskimagefile,maskimagefile_data,ext_img='jpg'):
+    I=cv2.imread(grayimagefile)
+    mask=cv2.imread(maskimagefile)
+    mask1=mask[:,:,0]
+    I[:,:,0][maskimagefile_data>0]=0
+    I[:,:,1][maskimagefile_data>0]=0
+    I[:,:,2][maskimagefile_data>0]=255
+    slice_num=maskimagefile[-7:-4]
+    filetoseave=maskimagefile.split(slice_num+"."+ext_img)[0] +"superimp"+ str(slice_num)+"." + ext_img
+    cv2.imwrite(filetoseave,I)
+    return filetoseave
+def mask_on_image_1(thisgray,thismask,grayimagefile,maskimagefile,slice_num,ext_img='jpg'):
     slice_3_layer= np.zeros([thisgray.shape[0],thisgray.shape[1],3])
     slice_3_layer[:,:,0]= thisgray #imgray1
     slice_3_layer[:,:,1]= thisgray #imgray1
@@ -177,7 +187,8 @@ for file in files_with1ext:
 #             print(basefile)
 #     print(file)
 #         filename1=mask_on_image(basefile,file,ext_img='jpg')
-        filename1=mask_on_image_1(grayfilename_nib_data[:,:,int(number)],atelectasis_filename_nib_data[:,:,int(number)],file,number,ext_img='jpg')
+        filename1=mask_on_image_2(basefile,file,atelectasis_filename_nib_data[:,:,int(number)],ext_img='jpg')
+        # filename1=mask_on_image_1(grayfilename_nib_data[:,:,int(number)],atelectasis_filename_nib_data[:,:,int(number)],basefile,file,number,ext_img='jpg')
 #     print(file)
 
 
