@@ -1229,6 +1229,8 @@ def imagesfor_presentation():
     imagesfor_presentation_maskimagedata(img_gray_data,savefilename,savetodir)
     # saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
     ## lung mask after thresholding: we have these
+    atelectasis_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_lung_mask_seg_gt_neg500LTRCLobes_R231.nii.gz"
+    imagesfor_presentation_masks(atelectasis_mask,savetodir)
     return 
     
     ##
