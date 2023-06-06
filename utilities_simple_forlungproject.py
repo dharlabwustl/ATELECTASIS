@@ -1208,7 +1208,7 @@ def imagesfor_presentation_maskimagedata(filename_gray_data_np,savefilename,save
     # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
     saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
     return
-def imagesfor_presentation_masks():
+def imagesfor_presentation_masks_apply():
     savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
     ## grayscale image: we have these
     gray_image_filename="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s.nii.gz"
