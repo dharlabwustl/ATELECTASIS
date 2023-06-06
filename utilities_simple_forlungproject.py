@@ -1105,7 +1105,14 @@ def saveslicesofnumpy3D(img_gray_data,savefilename="",savetodir=""):
         slice_num="{0:0=3d}".format(x)
         cv2.imwrite(os.path.join(savetodir,os.path.basename(savefilename).split(".nii")[0]+str(slice_num)+".jpg" ),img_gray_data[:,:,x] )
   
-    
+def create_images(directory_name):
+    save_dir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
+    for each_file in glob.glob(os.path.join(directory_name,'*.nii.gz')):
+        img_gray_data=nib.load(each_file).get_fdata()*255
+        savefilename=each_file
+        savetodir=save_dir
+        saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
+
 #def tex_for_each_subject():
     # find unique CT names:
     
