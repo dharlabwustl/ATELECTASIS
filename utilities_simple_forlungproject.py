@@ -1184,51 +1184,50 @@ def call_saveslicesofnumpy3D(args):
     savefilename=each_file
     savetodir=save_dir
     saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
-def imagesfor_presentation_grayscale(lung_gray):
+def imagesfor_presentation_grayscale(lung_gray,savetodir):
     filename_gray_data_np=nib.load(lung_gray).get_fdata()
     img_gray_data=exposure.rescale_intensity( filename_gray_data_np , in_range=(-1000, 500))
-    # lung_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_lung_gray_seg_LTRCLobes_R231_bw.nii.gz"
-    # lung_mask_nib_data=nib.load(lung_mask).get_fdata()
-    # curvature_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_2_5_15_vessels_modfd.nii.gz"
-    # curvature_mask_nib_data=nib.load(curvature_mask).get_fdata()
-    # lung_mask_nib_data[lung_mask_nib_data>0]=255
-    # lung_mask_nib_data[curvature_mask_nib_data>0]=np.min(lung_mask_nib_data)
     img_gray_data=img_gray_data*255
     savefilename=lung_gray #.split('.nii.gz')[0]+"w.nii.gz"
-    savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
+    # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
     saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
     return
-def imagesfor_presentation_masks(lung_gray):
-    filename_gray_data_np=nib.load(lung_gray).get_fdata()
+def imagesfor_presentation_masks(lung_mask,savetodir):
+    filename_gray_data_np=nib.load(lung_mask).get_fdata()
     img_gray_data=filename_gray_data_np #exposure.rescale_intensity( filename_gray_data_np , in_range=(-1000, 500))
-    # lung_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_lung_gray_seg_LTRCLobes_R231_bw.nii.gz"
-    # lung_mask_nib_data=nib.load(lung_mask).get_fdata()
-    # curvature_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_2_5_15_vessels_modfd.nii.gz"
-    # curvature_mask_nib_data=nib.load(curvature_mask).get_fdata()
-    # lung_mask_nib_data[lung_mask_nib_data>0]=255
-    # lung_mask_nib_data[curvature_mask_nib_data>0]=np.min(lung_mask_nib_data)
     img_gray_data[img_gray_data>0]=255
-    savefilename=lung_gray #.split('.nii.gz')[0]+"w.nii.gz"
-    savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
+    savefilename=lung_mask #.split('.nii.gz')[0]+"w.nii.gz"
+    # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
+    saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
+    return
+def imagesfor_presentation_maskimagedata(filename_gray_data_np,savefilename,savetodir):
+    # filename_gray_data_np=nib.load(lung_gray).get_fdata()
+    img_gray_data=filename_gray_data_np #exposure.rescale_intensity( filename_gray_data_np , in_range=(-1000, 500))
+    img_gray_data[img_gray_data>0]=255
+    savefilename=savefilename #.split('.nii.gz')[0]+"w.nii.gz"
+    # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
     saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
     return
 def imagesfor_presentation_masks():
-    gray_image_filename="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s.nii.gz"
-    imagesfor_presentation_grayscale(gray_image_filename)
+    savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
     ## grayscale image: we have these
+    gray_image_filename="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s.nii.gz"
+    imagesfor_presentation_grayscale(gray_image_filename,savetodir)
     ## lung mask image: we have these
     ## mask of curvatures in the lungs: we have these
     ## lung mask area after subtraction of the curvatures area:
     lung_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_lung_gray_seg_LTRCLobes_R231_bw.nii.gz"
+    imagesfor_presentation_masks(lung_mask,savetodir)
     lung_mask_nib_data=nib.load(lung_mask).get_fdata()
     curvature_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_2_5_15_vessels_modfd.nii.gz"
     curvature_mask_nib_data=nib.load(curvature_mask).get_fdata()
-    lung_mask_nib_data[lung_mask_nib_data>0]=255
+    # lung_mask_nib_data[lung_mask_nib_data>0]=255
     lung_mask_nib_data[curvature_mask_nib_data>0]=np.min(lung_mask_nib_data)
     img_gray_data=lung_mask_nib_data #*255
     savefilename=lung_mask.split('.nii.gz')[0]+"without_vessels.nii.gz"
-    savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
-    saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
+
+    imagesfor_presentation_maskimagedata(img_gray_data,savefilename,savetodir)
+    # saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
     ## lung mask after thresholding: we have these
     return 
     
