@@ -1184,6 +1184,24 @@ def call_saveslicesofnumpy3D(args):
     savefilename=each_file
     savetodir=save_dir
     saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
+def imagesfor_presentation_masks():
+    ## grayscale image: we have these
+    ## lung mask image: we have these
+    ## mask of curvatures in the lungs: we have these
+    ## lung mask area after subtraction of the curvatures area:
+    lung_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_lung_gray_seg_LTRCLobes_R231_bw.nii.gz"
+    lung_mask_nib_data=nib.load(lung_mask).get_fdata()
+    curvature_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_2_5_15_vessels_modfd.nii.gz"
+    curvature_mask_nib_data=nib.load(curvature_mask).get_fdata()
+    lung_mask_nib_data[curvature_mask_nib_data>0]=np.min(lung_mask_nib_data)
+    img_gray_data=lung_mask_nib_data*255
+    savefilename=lung_mask.split('.nii.gz')[0]+"without_vessels.nii.gz"
+    savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
+    saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
+    ## lung mask after thresholding: we have these
+    return 
+    
+    ##
 def main():
 
     parser = argparse.ArgumentParser()
