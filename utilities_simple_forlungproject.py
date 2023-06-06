@@ -1216,8 +1216,8 @@ def imagesfor_presentation_masks():
     # ## lung mask image: we have these
     # ## mask of curvatures in the lungs: we have these
     # ## lung mask area after subtraction of the curvatures area:
-    # lung_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_lung_gray_seg_LTRCLobes_R231_bw.nii.gz"
-    # imagesfor_presentation_masks(lung_mask,savetodir)
+    lung_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_lung_gray_seg_LTRCLobes_R231_bw.nii.gz"
+    imagesfor_presentation_masks(lung_mask,savetodir)
     # lung_mask_nib_data=nib.load(lung_mask).get_fdata()
     # curvature_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_2_5_15_vessels_modfd.nii.gz"
     # curvature_mask_nib_data=nib.load(curvature_mask).get_fdata()
