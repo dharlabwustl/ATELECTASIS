@@ -12,7 +12,7 @@ import numpy as np
 import cv2
 import nibabel as nib
 from skimage import exposure 
-import smtplib,math
+import smtplib,math,argparse
 # import matplotlib.pyplot as plt
 def demo():
     print(" i m in demo")
@@ -1105,13 +1105,7 @@ def saveslicesofnumpy3D(img_gray_data,savefilename="",savetodir=""):
         slice_num="{0:0=3d}".format(x)
         cv2.imwrite(os.path.join(savetodir,os.path.basename(savefilename).split(".nii")[0]+str(slice_num)+".jpg" ),img_gray_data[:,:,x] )
   
-def create_images(directory_name):
-    save_dir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
-    for each_file in glob.glob(os.path.join(directory_name,'*.nii.gz')):
-        img_gray_data=nib.load(each_file).get_fdata()*255
-        savefilename=each_file
-        savetodir=save_dir
-        saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
+
 
 #def tex_for_each_subject():
     # find unique CT names:
@@ -1182,7 +1176,26 @@ def combine_csv_files():
 
 
 ############################################################################################################################
+def call_saveslicesofnumpy3D(args):
+    each_file=args.stuff[1]
+    save_dir=args.stuff[2] #'/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
+    # for each_file in glob.glob(os.path.join(directory_name,'*.nii.gz')):
+    img_gray_data=nib.load(each_file).get_fdata()*255
+    savefilename=each_file
+    savetodir=save_dir
+    saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
+def main():
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument('stuff', nargs='+')
+    args = parser.parse_args()
+    name_of_the_function=args.stuff[0]
+    return_value=0
+    if name_of_the_function == "call_saveslicesofnumpy3D":
+        return_value=call_saveslicesofnumpy3D(args)
 
+    print(return_value)
+if __name__ == '__main__':
+    main()
 
 
