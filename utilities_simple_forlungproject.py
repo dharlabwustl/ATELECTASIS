@@ -1194,7 +1194,7 @@ def imagesfor_presentation_masks():
     curvature_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_2_5_15_vessels_modfd.nii.gz"
     curvature_mask_nib_data=nib.load(curvature_mask).get_fdata()
     lung_mask_nib_data[lung_mask_nib_data>0]=255
-    # lung_mask_nib_data[curvature_mask_nib_data>0]=np.min(lung_mask_nib_data)
+    lung_mask_nib_data[curvature_mask_nib_data>0]=np.min(lung_mask_nib_data)
     img_gray_data=lung_mask_nib_data #*255
     savefilename=lung_mask.split('.nii.gz')[0]+"without_vessels.nii.gz"
     savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
