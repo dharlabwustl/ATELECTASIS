@@ -1201,7 +1201,7 @@ def imagesfor_presentation_masks(lung_mask,savetodir):
     saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
     return
 def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,ext_img=".jpg"):
-    for x in len(grayimagefile_data.shape[2]):
+    for x in range(grayimagefile_data.shape[2]):
         slice_num=x
         I=grayimagefile_data[:,:,x] #cv2.imread(grayimagefile)
         maskimagefile_data=maskimagefile_data_3D[:,:,x]
