@@ -1216,7 +1216,7 @@ def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,s
         I[:,:,1][maskimagefile_data>0]=0
         I[:,:,2][maskimagefile_data>0]=255
         # slice_num=maskimagefile[-7:-4]
-        filetoseave=os.path.join(savetodir,os.path.basename(maskimagefile).split(".nii")[0] +"superimp"+ str(slice_num)+"." + ext_img
+        filetoseave=os.path.join(savetodir,os.path.basename(maskimagefile).split(".nii")[0] +"superimp"+ str(slice_num)+"." + ext_img)
         cv2.imwrite(filetoseave,I)
     return filetoseave
 def imagesfor_presentation_maskimagedata(filename_gray_data_np,savefilename,savetodir):
