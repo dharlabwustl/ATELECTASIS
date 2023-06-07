@@ -1254,7 +1254,7 @@ def imagesfor_presentation():
     filename_gray_data_np=nib.load(gray_image_filename).get_fdata()
     img_gray_data=exposure.rescale_intensity( filename_gray_data_np , in_range=(-1000, 500))
     img_gray_data=img_gray_data*255
-    maskimagefile_data_3D=nib.load(gray_image_filename).get_fdata()
+    maskimagefile_data_3D=nib.load(atelectasis_mask).get_fdata()
     maskimagefile=atelectasis_mask.split(".nii")[0]+"superimposed.nii.gz"
     mask_on_image_color(img_gray_data,maskimagefile_data_3D,maskimagefile,ext_img='jpg')
     return 
