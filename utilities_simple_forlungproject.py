@@ -1200,6 +1200,19 @@ def imagesfor_presentation_masks(lung_mask,savetodir):
     # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
     saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
     return
+def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,ext_img='jpg'):
+    for x in len(grayimagefile_data.shape[2]):
+        I=grayimagefile_data[:,:,x] #cv2.imread(grayimagefile)
+        maskimagefile_data=maskimagefile_data_3D[:,:,x]
+        # maskimagefile_data_3D=cv2.imread(maskimagefile)
+        # mask1=mask[:,:,0]
+        I[:,:,0][maskimagefile_data>0]=0
+        I[:,:,1][maskimagefile_data>0]=0
+        I[:,:,2][maskimagefile_data>0]=255
+        slice_num=maskimagefile[-7:-4]
+        filetoseave=maskimagefile.split(slice_num+"."+ext_img)[0] +"superimp"+ str(slice_num)+"." + ext_img
+        cv2.imwrite(filetoseave,I)
+    return filetoseave
 def imagesfor_presentation_maskimagedata(filename_gray_data_np,savefilename,savetodir):
     # filename_gray_data_np=nib.load(lung_gray).get_fdata()
     img_gray_data=filename_gray_data_np #exposure.rescale_intensity( filename_gray_data_np , in_range=(-1000, 500))
@@ -1231,6 +1244,13 @@ def imagesfor_presentation():
     ## lung mask after thresholding: we have these
     atelectasis_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_lung_mask_seg_gt_neg500LTRCLobes_R231.nii.gz"
     imagesfor_presentation_masks(atelectasis_mask,savetodir)
+
+    filename_gray_data_np=nib.load(gray_image_filename).get_fdata()
+    img_gray_data=exposure.rescale_intensity( filename_gray_data_np , in_range=(-1000, 500))
+    img_gray_data=img_gray_data*255
+    maskimagefile_data_3D=nib.load(gray_image_filename).get_fdata()
+    maskimagefile=atelectasis_mask.split[".nii"][0]+"superimposed.nii.gz"
+    mask_on_image_color(img_gray_data,maskimagefile_data_3D,maskimagefile,ext_img='jpg')
     return 
     
     ##
