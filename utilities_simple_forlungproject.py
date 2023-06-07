@@ -1200,7 +1200,7 @@ def imagesfor_presentation_masks(lung_mask,savetodir):
     # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
     saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
     return
-def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,ext_img=".jpg"):
+def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,savetodir,ext_img=".jpg"):
     for x in range(grayimagefile_data.shape[2]):
         slice_num=x
         I1=grayimagefile_data[:,:,x]
@@ -1216,7 +1216,7 @@ def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,e
         I[:,:,1][maskimagefile_data>0]=0
         I[:,:,2][maskimagefile_data>0]=255
         # slice_num=maskimagefile[-7:-4]
-        filetoseave=maskimagefile.split(".nii")[0] +"superimp"+ str(slice_num)+"." + ext_img
+        filetoseave=os.path.join(savetodir,os.path.basename(maskimagefile).split(".nii")[0] +"superimp"+ str(slice_num)+"." + ext_img
         cv2.imwrite(filetoseave,I)
     return filetoseave
 def imagesfor_presentation_maskimagedata(filename_gray_data_np,savefilename,savetodir):
@@ -1256,7 +1256,7 @@ def imagesfor_presentation():
     img_gray_data=img_gray_data*255
     maskimagefile_data_3D=nib.load(atelectasis_mask).get_fdata()
     maskimagefile=atelectasis_mask.split(".nii")[0]+"superimposed.nii.gz"
-    mask_on_image_color(img_gray_data,maskimagefile_data_3D,maskimagefile,ext_img='jpg')
+    mask_on_image_color(img_gray_data,maskimagefile_data_3D,maskimagefile,savetodir,ext_img='jpg')
     return 
     
     ##
