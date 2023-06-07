@@ -1240,6 +1240,7 @@ def imagesfor_presentation():
     imagesfor_presentation_masks(lung_mask,savetodir)
     lung_mask_nib_data=nib.load(lung_mask).get_fdata()
     curvature_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_2_5_15_vessels_modfd.nii.gz"
+    imagesfor_presentation_masks(curvature_mask,savetodir)
     curvature_mask_nib_data=nib.load(curvature_mask).get_fdata()
     # lung_mask_nib_data[lung_mask_nib_data>0]=255
     lung_mask_nib_data[curvature_mask_nib_data>0]=np.min(lung_mask_nib_data)
