@@ -1210,7 +1210,7 @@ def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,e
         I[:,:,0][maskimagefile_data>0]=0
         I[:,:,1][maskimagefile_data>0]=0
         I[:,:,2][maskimagefile_data>0]=255
-        slice_num=maskimagefile[-7:-4]
+        # slice_num=maskimagefile[-7:-4]
         filetoseave=maskimagefile.split(".nii")[0] +"superimp"+ str(slice_num)+"." + ext_img
         cv2.imwrite(filetoseave,I)
     return filetoseave
