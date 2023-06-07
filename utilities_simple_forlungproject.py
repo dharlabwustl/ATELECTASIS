@@ -1203,10 +1203,15 @@ def imagesfor_presentation_masks(lung_mask,savetodir):
 def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,ext_img=".jpg"):
     for x in range(grayimagefile_data.shape[2]):
         slice_num=x
-        I=grayimagefile_data[:,:,x] #cv2.imread(grayimagefile)
+        I1=grayimagefile_data[:,:,x]
+        I= np.zeros([I1.shape[0],I1.shape[1],3])
+        # I=grayimagefile_data[:,:,x] #cv2.imread(grayimagefile)
         maskimagefile_data=maskimagefile_data_3D[:,:,x]
         # maskimagefile_data_3D=cv2.imread(maskimagefile)
         # mask1=mask[:,:,0]
+        I[:,:,0]=I1
+        I[:,:,1]=I1
+        I[:,:,2]=I1
         I[:,:,0][maskimagefile_data>0]=0
         I[:,:,1][maskimagefile_data>0]=0
         I[:,:,2][maskimagefile_data>0]=255
