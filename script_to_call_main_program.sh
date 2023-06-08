@@ -30,6 +30,13 @@ then
 echo ${PROJECT_ID}::$XNAT_USER::$XNAT_PASS::$XNAT_HOST
    /software/analyzed_session_list.sh  ${PROJECT_ID} $XNAT_USER $XNAT_PASS $XNAT_HOST
 fi
+if [[ ${TYPE_OF_PROGRAM} == 4 ]] ;
+then
+
+  PROJECT_ID=${1}
+echo ${PROJECT_ID}::$XNAT_USER::$XNAT_PASS::$XNAT_HOST
+   /software/create_flowchart.sh  ${PROJECT_ID} $XNAT_USER $XNAT_PASS $XNAT_HOST
+fi
 #if [[ ${TYPE_OF_PROGRAM} == 2 ]] ;
 #then
 #    /software/nwucalculation_session_level_allsteps_November14_2022.sh $SESSION_ID $XNAT_USER $XNAT_PASS $XNAT_HOST /input /output
