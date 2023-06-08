@@ -309,49 +309,49 @@ get_maskfile_scan_metadata()" ${sessionId}  ${scanId}  ${resource_foldername} ${
 niftifile_csvfilename=${working_dir}/'this_session_final_ct.csv'
 get_nifti_scan_uri ${sessionID}  ${working_dir} ${niftifile_csvfilename}
 copy_scan_data ${niftifile_csvfilename} ${working_dir}
-lung_atelectasis_calculation
-
-
-
-###############################################################################################################
-
-## GET THE RESPECTIVS MASKS NIFTI FILE NAME AND COPY IT TO THE WORKING_DIR
-
-######################################################################################
-#resource_dirname='MASKS'
-#output_dirname=${working_dir}
-while IFS=',' read -ra array; do
-scanID=${array[2]}
-echo sessionId::${sessionID}
-echo scanId::${scanID}
-done < <( tail -n +2 "${niftifile_csvfilename}" )
-#echo working_dir::${working_dir}
-#echo output_dirname::${output_dirname}
-#copy_masks_data   ${sessionID}  ${scanID} ${resource_dirname} ${output_dirname}
+#lung_atelectasis_calculation
+#
+#
+#
+################################################################################################################
+#
+### GET THE RESPECTIVS MASKS NIFTI FILE NAME AND COPY IT TO THE WORKING_DIR
+#
+#######################################################################################
+##resource_dirname='MASKS'
+##output_dirname=${working_dir}
+#while IFS=',' read -ra array; do
+#scanID=${array[2]}
+#echo sessionId::${sessionID}
+#echo scanId::${scanID}
+#done < <( tail -n +2 "${niftifile_csvfilename}" )
+##echo working_dir::${working_dir}
+##echo output_dirname::${output_dirname}
+##copy_masks_data   ${sessionID}  ${scanID} ${resource_dirname} ${output_dirname}
+########################################################################################################################
+### CALCULATE EDEMA BIOMARKERS
+##nwucalculation_each_scan
 #######################################################################################################################
-## CALCULATE EDEMA BIOMARKERS
-#nwucalculation_each_scan
-######################################################################################################################
-## COPY IT TO THE SNIPR RESPECTIVE SCAN RESOURCES
-snipr_output_foldername="LUNG_ATELECTASIS"
-file_suffixes=(  .pdf .csv ) #sys.argv[5]
-for file_suffix in ${file_suffixes[@]}
-do
-    copyoutput_to_snipr  ${sessionID} ${scanID} "${CALCULATION_DIR}"  ${snipr_output_foldername}  ${file_suffix}
-done
-######################################################################################################################
-
-for file_suffix in ${file_suffixes[@]}
-do
-    copyoutput_to_snipr  ${sessionID} ${scanID} "${LATEX_DIR}"  ${snipr_output_foldername}  ${file_suffix}
-done
-######################################################################################################################
-snipr_output_foldername="PROCESSING_FILES"
-file_suffixes=( .gz )
-for file_suffix in ${file_suffixes[@]}
-do
-    copyoutput_to_snipr  ${sessionID} ${scanID} "${OUTPUTDIRNAME}"  ${snipr_output_foldername}  ${file_suffix}
-done
+### COPY IT TO THE SNIPR RESPECTIVE SCAN RESOURCES
+#snipr_output_foldername="LUNG_ATELECTASIS"
+#file_suffixes=(  .pdf .csv ) #sys.argv[5]
+#for file_suffix in ${file_suffixes[@]}
+#do
+#    copyoutput_to_snipr  ${sessionID} ${scanID} "${CALCULATION_DIR}"  ${snipr_output_foldername}  ${file_suffix}
+#done
+#######################################################################################################################
+#
+#for file_suffix in ${file_suffixes[@]}
+#do
+#    copyoutput_to_snipr  ${sessionID} ${scanID} "${LATEX_DIR}"  ${snipr_output_foldername}  ${file_suffix}
+#done
+#######################################################################################################################
+#snipr_output_foldername="PROCESSING_FILES"
+#file_suffixes=( .gz )
+#for file_suffix in ${file_suffixes[@]}
+#do
+#    copyoutput_to_snipr  ${sessionID} ${scanID} "${OUTPUTDIRNAME}"  ${snipr_output_foldername}  ${file_suffix}
+#done
 final_output_directory=/outputinsidedocker
 call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${sessionID} ${scanID} ${snipr_output_foldername} .pdf .csv)
 outputfiles_present=$(python3 download_with_session_ID.py "${call_create_imagesfor_presentation_arguments[@]}")
