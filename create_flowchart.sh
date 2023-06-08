@@ -324,6 +324,7 @@ while IFS=',' read -ra array; do
 scanID=${array[2]}
 echo sessionId::${sessionID}
 echo scanId::${scanID}
+echo "ARRAY${array[0]}::${array[1]}::${array[2]}::${array[3]}"
 done < <( tail -n +2 "${niftifile_csvfilename}" )
 ##echo working_dir::${working_dir}
 ##echo output_dirname::${output_dirname}
