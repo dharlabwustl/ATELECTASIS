@@ -353,9 +353,9 @@ done < <( tail -n +2 "${niftifile_csvfilename}" )
 #    copyoutput_to_snipr  ${sessionID} ${scanID} "${OUTPUTDIRNAME}"  ${snipr_output_foldername}  ${file_suffix}
 #done
 
-final_output_directory=/outputinsidedocker
-call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${final_output_directory})
-outputfiles_present=$(python3 download_with_session_ID.py "${call_create_imagesfor_presentation_arguments[@]}")
+#final_output_directory=/outputinsidedocker
+#call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${final_output_directory})
+#outputfiles_present=$(python3 download_with_session_ID.py "${call_create_imagesfor_presentation_arguments[@]}")
 #CALCULATION_DIR=/calculation
 #LATEX_DIR=/latex
 #IMAGES_DIR=/images

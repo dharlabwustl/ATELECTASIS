@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9badd5b1-df75-461b-a945-875443e6ff64" name="Changes" comment="Commit 4">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/create_flowchart.sh" beforeDir="false" afterPath="$PROJECT_DIR$/create_flowchart.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,13 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669833426575</updated>
-    </task>
-    <task id="LOCAL-00092" summary="Commit 4">
-      <created>1676486087081</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1676486087081</updated>
     </task>
     <task id="LOCAL-00093" summary="Commit 4">
       <created>1676486892638</created>
@@ -453,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686251821146</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="Commit 4">
+      <created>1686251893244</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1686251893244</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
