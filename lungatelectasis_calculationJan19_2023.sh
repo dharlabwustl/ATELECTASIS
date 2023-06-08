@@ -347,7 +347,7 @@ do
 done
 ######################################################################################################################
 snipr_output_foldername="PROCESSING_FILES"
-file_suffixes=(  .nii.gz )
+file_suffixes=( .nii.gz )
 for file_suffix in ${file_suffixes[@]}
 do
     copyoutput_to_snipr  ${sessionID} ${scanID} "${OUTPUTDIRNAME}"  ${snipr_output_foldername}  ${file_suffix}
