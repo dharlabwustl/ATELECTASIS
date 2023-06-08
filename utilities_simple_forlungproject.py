@@ -1323,8 +1323,9 @@ def call_create_imagesfor_presentation(args):
         curvature_mask=args.stuff[3]
         atelectasis_mask=args.stuff[4]
         savetodir=args.stuff[5]
-        create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvature_mask,atelectasis_mask)
+        max_vol_id=create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvature_mask,atelectasis_mask)
         print(" I SUCCEED AT call_create_imagesfor_presentation")
+        return max_vol_id
     except:
         print(" I FAILED AT call_create_imagesfor_presentation")
         pass
