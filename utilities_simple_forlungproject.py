@@ -1262,6 +1262,56 @@ def imagesfor_presentation():
     return 
     
     ##
+def create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvature_mask,atelectasis_mask):
+    try:
+        # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
+        ## grayscale image: we have these
+        # gray_image_filename="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s.nii.gz"
+        imagesfor_presentation_grayscale(gray_image_filename,savetodir)
+        # ## lung mask image: we have these
+        # ## mask of curvatures in the lungs: we have these
+        # ## lung mask area after subtraction of the curvatures area:
+        # lung_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_lung_gray_seg_LTRCLobes_R231_bw.nii.gz"
+        imagesfor_presentation_masks(lung_mask,savetodir)
+        lung_mask_nib_data=nib.load(lung_mask).get_fdata()
+        # curvature_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_2_5_15_vessels_modfd.nii.gz"
+        imagesfor_presentation_masks(curvature_mask,savetodir)
+        curvature_mask_nib_data=nib.load(curvature_mask).get_fdata()
+        # lung_mask_nib_data[lung_mask_nib_data>0]=255
+        lung_mask_nib_data[curvature_mask_nib_data>0]=np.min(lung_mask_nib_data)
+        img_gray_data=lung_mask_nib_data #*255
+        savefilename=lung_mask.split('.nii.gz')[0]+"without_vessels.nii.gz"
+
+        imagesfor_presentation_maskimagedata(img_gray_data,savefilename,savetodir)
+        # saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
+        ## lung mask after thresholding: we have these
+        # atelectasis_mask="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s_lung_mask_seg_gt_neg500LTRCLobes_R231.nii.gz"
+        imagesfor_presentation_masks(atelectasis_mask,savetodir)
+
+        filename_gray_data_np=nib.load(gray_image_filename).get_fdata()
+        img_gray_data=exposure.rescale_intensity( filename_gray_data_np , in_range=(-1000, 500))
+        img_gray_data=img_gray_data*255
+        maskimagefile_data_3D=nib.load(atelectasis_mask).get_fdata()
+        maskimagefile=atelectasis_mask.split(".nii")[0]+"superimposed.nii.gz"
+        mask_on_image_color(img_gray_data,maskimagefile_data_3D,maskimagefile,savetodir,ext_img='jpg')
+    except:
+        print(" I FAILED AT call_create_imagesfor_presentation")
+    pass
+    return
+
+    ##
+def call_create_imagesfor_presentation(args):
+    try:
+        gray_image_filename=args.stuff[1]
+        lung_mask=args.stuff[2]
+        curvature_mask=args.stuff[3]
+        atelectasis_mask=args.stuff[4]
+        savetodir=args.stuff[5]
+        create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvature_mask,atelectasis_mask)
+    except:
+        print(" I FAILED AT call_create_imagesfor_presentation")
+        pass
+
 def main():
 
     parser = argparse.ArgumentParser()
@@ -1271,6 +1321,8 @@ def main():
     return_value=0
     if name_of_the_function == "call_saveslicesofnumpy3D":
         return_value=call_saveslicesofnumpy3D(args)
+    if name_of_the_function == "call_create_imagesfor_presentation":
+        return_value=call_create_imagesfor_presentation(args)
 
     print(return_value)
 if __name__ == '__main__':
