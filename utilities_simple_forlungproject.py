@@ -1294,8 +1294,9 @@ def create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvat
         maskimagefile_data_3D=nib.load(atelectasis_mask).get_fdata()
         maskimagefile=atelectasis_mask.split(".nii")[0]+"superimposed.nii.gz"
         mask_on_image_color(img_gray_data,maskimagefile_data_3D,maskimagefile,savetodir,ext_img='jpg')
+        print(" I FAILED AT create_imagesfor_presentation")
     except:
-        print(" I FAILED AT call_create_imagesfor_presentation")
+        print(" I FAILED AT create_imagesfor_presentation")
     pass
     return
 
@@ -1308,6 +1309,7 @@ def call_create_imagesfor_presentation(args):
         atelectasis_mask=args.stuff[4]
         savetodir=args.stuff[5]
         create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvature_mask,atelectasis_mask)
+        print(" I SUCCEED AT call_create_imagesfor_presentation")
     except:
         print(" I FAILED AT call_create_imagesfor_presentation")
         pass
