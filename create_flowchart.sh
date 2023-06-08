@@ -320,12 +320,12 @@ copy_scan_data ${niftifile_csvfilename} ${working_dir}
 #######################################################################################
 ##resource_dirname='MASKS'
 ##output_dirname=${working_dir}
-while IFS=',' read -ra array; do
-scanID=${array[2]}
-echo sessionId::${sessionID}
-echo scanId::${scanID}
-echo "ARRAY${array[0]}::${array[1]}::${array[2]}::${array[3]}"
-done < <( tail -n +2 "${niftifile_csvfilename}" )
+#while IFS=',' read -ra array; do
+#scanID=${array[2]}
+#echo sessionId::${sessionID}
+#echo scanId::${scanID}
+#echo "ARRAY${array[0]}::${array[1]}::${array[2]}::${array[3]}"
+#done < <( tail -n +2 "${niftifile_csvfilename}" )
 ##echo working_dir::${working_dir}
 ##echo output_dirname::${output_dirname}
 ##copy_masks_data   ${sessionID}  ${scanID} ${resource_dirname} ${output_dirname}
@@ -353,10 +353,22 @@ done < <( tail -n +2 "${niftifile_csvfilename}" )
 #do
 #    copyoutput_to_snipr  ${sessionID} ${scanID} "${OUTPUTDIRNAME}"  ${snipr_output_foldername}  ${file_suffix}
 #done
+final_output_directory=/outputinsidedocker
+while IFS=',' read -ra array; do
+scanID=${array[2]}
+echo sessionId::${sessionID}
+echo scanId::${scanID}
+echo "ARRAY${array[0]}::${array[1]}::${array[2]}::${array[3]}"
+gray_image_filename=${working_dir}/${final_output_directory}/${array[1]}
+lung_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_lung_gray_seg_LTRCLobes_R231_bw.nii.gz
+curvature_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_2_5_15_vessels_modfd.nii.gz
+atelectasis_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_lung_mask_seg_gt_neg500LTRCLobes_R231.nii.gz
+savetodir=${final_output_directory}
+#savetodir,gray_image_filename,lung_mask,,
 
-#final_output_directory=/outputinsidedocker
-#call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${final_output_directory})
-#outputfiles_present=$(python3 download_with_session_ID.py "${call_create_imagesfor_presentation_arguments[@]}")
+call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir})
+outputfiles_present=$(python utilities_simple_forlungproject.py "${call_create_imagesfor_presentation_arguments[@]}")
+done < <( tail -n +2 "${niftifile_csvfilename}" )
 #CALCULATION_DIR=/calculation
 #LATEX_DIR=/latex
 #IMAGES_DIR=/images
