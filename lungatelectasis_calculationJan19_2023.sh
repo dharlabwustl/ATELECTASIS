@@ -345,6 +345,13 @@ for file_suffix in ${file_suffixes[@]}
 do
     copyoutput_to_snipr  ${sessionID} ${scanID} "${LATEX_DIR}"  ${snipr_output_foldername}  ${file_suffix}
 done
+######################################################################################################################
+snipr_output_foldername="PROCESSING_FILES"
+file_suffixes=(  .nii.gz )
+for file_suffix in ${file_suffixes[@]}
+do
+    copyoutput_to_snipr  ${sessionID} ${scanID} "${OUTPUTDIRNAME}"  ${snipr_output_foldername}  ${file_suffix}
+done
 #CALCULATION_DIR=/calculation
 #LATEX_DIR=/latex
 #IMAGES_DIR=/images
