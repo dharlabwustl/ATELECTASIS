@@ -369,7 +369,9 @@ echo '${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} 
 
 call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir})
 outputfiles_present=$(python utilities_simple_forlungproject.py "${call_create_imagesfor_presentation_arguments[@]}")
+echo "outputfiles_present:: "${outputfiles_present: -1}"::outputfiles_present"
 done < <( tail -n +2 "${niftifile_csvfilename}" )
+slice_number=
 #CALCULATION_DIR=/calculation
 #LATEX_DIR=/latex
 #IMAGES_DIR=/images

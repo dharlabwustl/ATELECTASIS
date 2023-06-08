@@ -1294,11 +1294,26 @@ def create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvat
         maskimagefile_data_3D=nib.load(atelectasis_mask).get_fdata()
         maskimagefile=atelectasis_mask.split(".nii")[0]+"superimposed.nii.gz"
         mask_on_image_color(img_gray_data,maskimagefile_data_3D,maskimagefile,savetodir,ext_img='jpg')
+        ## slice with maximum volume:
+        atelectasis_mask_data=nib.load(atelectasis_mask).get_fdata()
+        slice_vol=[]
+        max_vol=0 #np.sum(atelectasis_mask_data)
+        max_vol_id=0
+        for x in range(atelectasis_mask_data.shape[2]):
+            this_slice_sum=np.sum(atelectasis_mask_data[:,:,x])
+            if max_vol < this_slice_sum:
+                max_vol_id=x
+                max_vol=this_slice_sum
+
+
+
+
         print(" I FAILED AT create_imagesfor_presentation")
+        return max_vol_id
     except:
         print(" I FAILED AT create_imagesfor_presentation")
     pass
-    return
+    return "NONE"
 
     ##
 def call_create_imagesfor_presentation(args):
