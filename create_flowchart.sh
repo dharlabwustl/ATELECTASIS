@@ -364,6 +364,7 @@ lung_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_lung_gray_seg_LTRCLobes_R231_bw.nii
 curvature_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_2_5_15_vessels_modfd.nii.gz
 atelectasis_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_lung_mask_seg_gt_neg500LTRCLobes_R231.nii.gz
 savetodir=${final_output_directory}
+echo '${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir}'::"${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir}"
 #savetodir,gray_image_filename,lung_mask,,
 
 call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir})
