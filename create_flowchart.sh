@@ -320,11 +320,11 @@ copy_scan_data ${niftifile_csvfilename} ${working_dir}
 #######################################################################################
 ##resource_dirname='MASKS'
 ##output_dirname=${working_dir}
-#while IFS=',' read -ra array; do
-#scanID=${array[2]}
-#echo sessionId::${sessionID}
-#echo scanId::${scanID}
-#done < <( tail -n +2 "${niftifile_csvfilename}" )
+while IFS=',' read -ra array; do
+scanID=${array[2]}
+echo sessionId::${sessionID}
+echo scanId::${scanID}
+done < <( tail -n +2 "${niftifile_csvfilename}" )
 ##echo working_dir::${working_dir}
 ##echo output_dirname::${output_dirname}
 ##copy_masks_data   ${sessionID}  ${scanID} ${resource_dirname} ${output_dirname}
@@ -352,8 +352,9 @@ copy_scan_data ${niftifile_csvfilename} ${working_dir}
 #do
 #    copyoutput_to_snipr  ${sessionID} ${scanID} "${OUTPUTDIRNAME}"  ${snipr_output_foldername}  ${file_suffix}
 #done
+
 final_output_directory=/outputinsidedocker
-call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${sessionID} ${scanID} ${snipr_output_foldername} .pdf .csv)
+call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${final_output_directory})
 outputfiles_present=$(python3 download_with_session_ID.py "${call_create_imagesfor_presentation_arguments[@]}")
 #CALCULATION_DIR=/calculation
 #LATEX_DIR=/latex
