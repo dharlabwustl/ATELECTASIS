@@ -1300,7 +1300,7 @@ def create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvat
         max_vol=0 #np.sum(atelectasis_mask_data)
         max_vol_id=0
         for x in range(atelectasis_mask_data.shape[2]):
-            this_slice_sum=np.sum(atelectasis_mask_data[:,:,x])
+            this_slice_sum=np.sum(atelectasis_mask_data[:,:,x][atelectasis_mask_data[:,:,x]>0])
             if max_vol < this_slice_sum:
                 max_vol_id=x
                 max_vol=this_slice_sum
