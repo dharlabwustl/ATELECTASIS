@@ -125,8 +125,10 @@ if os.path.exists(vesselmask_filename):
     vesselmask_itk_arr=sitk.GetArrayFromImage(vesselmask_itk)
 # #         lungmask_itk_arr[grayfile_itk_arr<-400]=np.min(lungmask_itk_arr)
     lungmask_itk_arr_itk_arr=sitk.GetArrayFromImage(lungmask_itk_arr_itk)
-
+    vesselmask_itk_arr[vesselmask_itk_arr<=2]=np.min(vesselmask_itk_arr)
+    vesselmask_itk_arr[grayfile_itk_arr<-400]=np.min(vesselmask_itk_arr)
     lungmask_itk_arr_itk_arr[vesselmask_itk_arr>2]=np.min(lungmask_itk_arr_itk_arr)
+    # lungmask_itk_arr_itk_arr[vesselmask_itk_arr>2]=np.min(lungmask_itk_arr_itk_arr)
     lungmask_itk_arr_itk_arr_itk=sitk.GetImageFromArray(lungmask_itk_arr_itk_arr)
     lungmask_itk_arr_itk_arr_itk.CopyInformation(lungmask_itk)
 #     cleaned_thresh_img = sitk.BinaryOpeningByReconstruction(lungmask_itk_arr_itk_arr_itk, [3, 3, 3])
@@ -136,8 +138,8 @@ if os.path.exists(vesselmask_filename):
 
 
     sitk.WriteImage(lungmask_itk_arr_itk_arr_itk,subt_filename)
-    vesselmask_itk_arr[vesselmask_itk_arr<=2]=np.min(vesselmask_itk_arr)
-    vesselmask_itk_arr[grayfile_itk_arr<-400]=np.min(vesselmask_itk_arr)
+    # vesselmask_itk_arr[vesselmask_itk_arr<=2]=np.min(vesselmask_itk_arr)
+    # vesselmask_itk_arr[grayfile_itk_arr<-400]=np.min(vesselmask_itk_arr)
     vesselmask_itk_arr_itk=sitk.GetImageFromArray(vesselmask_itk_arr)
     vesselmask_itk_arr_itk.CopyInformation(vesselmask_itk)
 #                         vesselmask_itk_arr_itk_fn=os.path.join(vesselmasks_modified_dir,grayfile_basename_noext+'_3_5_20_vessels_modfd.nii.gz') 

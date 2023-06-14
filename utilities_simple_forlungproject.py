@@ -1278,7 +1278,7 @@ def create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvat
         imagesfor_presentation_masks(curvature_mask,savetodir)
         curvature_mask_nib_data=nib.load(curvature_mask).get_fdata()
         # lung_mask_nib_data[lung_mask_nib_data>0]=255
-        lung_mask_nib_data[curvature_mask_nib_data>0]=np.min(lung_mask_nib_data)
+        lung_mask_nib_data[curvature_mask_nib_data>2]=np.min(lung_mask_nib_data)
         img_gray_data=lung_mask_nib_data #*255
         savefilename=lung_mask.split('.nii.gz')[0]+"without_vessels.nii.gz"
 
