@@ -1219,8 +1219,8 @@ def imagesfor_presentation_masks(lung_mask,savetodir):
         subprocess.call("echo " + "PASSED AT ::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
         subprocess.call("echo " + "lungmaskfilename::{}  >> /workingoutput/error.txt".format(lung_mask) ,shell=True )
     except Exception:
-        subprocess.call("echo " + "FAILED DUE TO::{}  >> /workingoutput/error.txt".format(str(Exception)) ,shell=True )
-        # subprocess.call("echo " + "FAILED AT::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        # subprocess.call("echo " + "FAILED DUE TO::{}  >> /workingoutput/error.txt".format(str(Exception)) ,shell=True )
+        subprocess.call("echo " + "FAILED AT::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
 
 
     return
