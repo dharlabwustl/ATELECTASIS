@@ -96,7 +96,7 @@ def download_files_in_scans_resources_withname_sh():
     try:
         URI = (("/data/experiments/%s")  %
                (sessionId))
-        session_meta_data=get_metadata_session(URI)
+        session_meta_data=get_metadata_session(sessionId)
         session_meta_data_df = pd.read_json(json.dumps(session_meta_data))
         for index, row in session_meta_data_df.iterrows():
             if str(row["ID"])==str(scan_id):
