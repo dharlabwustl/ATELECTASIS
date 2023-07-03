@@ -111,8 +111,8 @@ def download_files_in_scans_resources_withname_sh():
 
                         # print("row::{}".format(row))
                         # download_a_singlefile_with_URLROW(row,dir_to_save)
-                        # download_a_singlefile_with_URIString(row_scan_resources['URI'],row_scan_resources['Name'],dir_to_save)
-                        # print("DOWNLOADED ::{}".format(row))
+                        download_a_singlefile_with_URIString(row_scan_resources['URI'],row_scan_resources['Name'],dir_to_save)
+                        print("DOWNLOADED ::{}".format(row))
                         print("PASSED AT ::{}".format(row_scan_resources['URI']))
 
     except:
