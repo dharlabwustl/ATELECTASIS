@@ -1264,6 +1264,8 @@ def imagesfor_presentation():
     ##
 def create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvature_mask,atelectasis_mask):
     try:
+        subprocess.call("echo " + "create_imagesfor_presentation::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "create_imagesfor_presentation::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
         # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
         ## grayscale image: we have these
         # gray_image_filename="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s.nii.gz"
