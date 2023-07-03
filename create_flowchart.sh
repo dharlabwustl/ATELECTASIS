@@ -298,7 +298,7 @@ python3 -c "
 import sys
 sys.path.append('/software');
 from download_with_session_ID import *;
-download_files_in_scans_resources_withname_sh()" ${sessionId} ${resource_dirname}  ${dir_to_save}
+download_files_in_scans_resources_withname_sh()" ${sessionId} ${scanID} ${resource_dirname}  ${dir_to_save}
 
 
 }
