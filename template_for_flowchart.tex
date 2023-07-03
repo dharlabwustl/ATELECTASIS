@@ -1,0 +1,679 @@
+\documentclass[tikz,border=10pt]{standalone}
+
+\usepackage[skins]{tcolorbox}
+\usetikzlibrary{shapes.symbols}
+\usetikzlibrary{positioning}
+\usetikzlibrary {arrows.meta} 
+\usepackage{tikz-3dplot}
+%\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage[skins]{tcolorbox}
+\usetikzlibrary{shapes.symbols}
+\usetikzlibrary{positioning}
+\usetikzlibrary {arrows.meta} 
+\usepackage{tikz-3dplot}
+\usetikzlibrary {shapes.arrows} 
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit,calc}
+\usetikzlibrary{arrows.meta,
+	bending}
+\newcommand\scalegithub{0.05}
+\usetikzlibrary{decorations.text}
+\tikzstyle{startstop} = [rectangle, rounded corners, 
+minimum width=3cm, 
+minimum height=1cm,
+text centered, 
+draw=black, 
+fill=red!30]
+
+\tikzstyle{io} = [trapezium, 
+trapezium stretches=true, % A later addition
+trapezium left angle=70, 
+trapezium right angle=110, 
+minimum width=3cm, 
+minimum height=1cm, text centered, 
+draw=black, fill=blue!30]
+
+\tikzstyle{process} = [rectangle, line width=3pt,
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+text width=3cm, 
+draw=blue, 
+fill=green!30, font=\linespread{0.8}\selectfont\bfseries]
+\tikzstyle{textbox} = [rectangle, line width=3pt,
+minimum width=3cm, 
+minimum height=1cm, 
+text width=4cm, 
+font=\linespread{0.8}\selectfont\bfseries]
+\tikzstyle{decision} = [diamond, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+draw=blue, line width=3pt,
+fill=green!30, align=center, font=\linespread{0.8}\selectfont\bfseries]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+% \newsavebox\doubleheadarrow\sbox\doubleheadarrow{
+% 	\begin{tikzpicture}
+% 		\path[draw={rgb:red,10;green!50,12;yellow,1},dashed, line width=1mm, -{Triangle[length=2mm,width=3mm, bend]}, shorten >=1.5mm, shorten <=-1mm]    
+% 		(0,0) to    (0,1); 
+% 		\path[draw={rgb:red,10;green!50,12;yellow,1},dashed,rotate=180 ,line width=1mm, -{Triangle[length=2mm,width=3mm, bend]}, shorten >=1.5mm, shorten <=-1mm]    
+% 		(0,0) to    (0,1);
+		
+% 	\end{tikzpicture}
+% }
+
+% \newsavebox\singleheadarrow\sbox\singleheadarrow{
+% 	\begin{tikzpicture}
+% 		\path[draw={rgb:red,10;green!100,12;yellow,1}, line width=3.5mm, -{Triangle[length=3mm,width=5mm, bend]}, shorten >=1.5mm, shorten <=-1mm]    
+% 		(0,0) to    (0,1); 
+% 		%		\path[draw={rgb:red,10;green!50,12;yellow,1},dashed,rotate=180 ,line width=1mm, -{Triangle[length=2mm,width=3mm, bend]}, shorten >=1.5mm, shorten <=-1mm]    
+% 		%		(0,0) to    (0,1);
+		
+% 	\end{tikzpicture}
+% }
+% \tikzset{
+% 	comp/.style = {
+% 		minimum width  = 8cm,
+% 		minimum height = 4.5cm,
+% 		text width     = 8cm,
+% 		inner sep      = 0pt,
+% 		text           = green,
+% 		align          = center,
+% 		font           = \Huge,
+% 		transform shape,
+% 		thick
+% 	},
+% 	monitor/.style = {draw = none, xscale = 18/16, yscale = 11/9},
+% 	display/.style = {shading = axis, left color = black!60, right color = black},
+% 	ut/.style      = {fill = gray}
+% }
+% \tikzset{
+% 	computer/.pic = {
+% 		% screen (with border)
+% 		\node(-m) [comp, pic actions, monitor]
+% 		{\phantom{\parbox{\linewidth}{\tikzpictext}}};
+% 		% display (without border)
+% 		\node[comp, pic actions, display] {\tikzpictext};
+% 		\begin{scope}[x = (-m.east), y = (-m.north)]
+% 			% filling the lower part
+% 			\path[pic actions, draw = none]
+% 			([yshift=2\pgflinewidth]-0.1,-1) -- (-0.1,-1.3) -- (-1,-1.3) --
+% 			(-1,-2.4) -- (1,-2.4) -- (1,-1.3) -- (0.1,-1.3) --
+% 			([yshift=2\pgflinewidth]0.1,-1);
+% 			\path[fill overzoom image=SNIPR_USER_INTERFACE.png] 	(-1,-1) -- (-1,1) -- (1,1) -- (1,-1) -- (-1,-1)  -- cycle;
+% 			% filling the border of the lower part
+% 			\path[ut ]
+% 			(-1,-2.4) rectangle (1,-1.3)
+% 			(-0.9,-1.4) -- (-0.7,-2.3) -- (0.7,-2.3) -- (0.9,-1.4) -- cycle;
+% 			% drawing the frame of the whole computer
+% 			\path[pic actions, fill = none]
+% 			(-1,1) -- (-1,-1) -- (-0.1,-1) -- (-0.1,-1.3) -- (-1,-1.3) --
+% 			(-1,-2.4) coordinate(sw)coordinate[pos=0.5] (-b west) --
+% 			(1,-2.4) -- (1,-1.3) coordinate[pos=0.5] (-b east) --
+% 			(0.1,-1.3) -- (0.1,-1) -- (1,-1) -- (1,1) -- cycle;
+% 			% node around the whole computer
+% 			\node(-c) [fit = (sw)(-m.north east), inner sep = 0pt] {};
+% 		\end{scope}
+% 	}
+% }
+
+% \newsavebox\githubcode\sbox\githubcode{
+% 	\begin{tikzpicture}
+% 		[
+% 			node distance=2.5mm,
+% 			title/.style={font=\fontsize{6}{6}\color{black!50}\ttfamily},
+% 			typetag/.style={rectangle, draw=black!50, font=\scriptsize\ttfamily, anchor=west},
+% 		scale=3	]
+		
+% 			\node (githubtitle) [title] { 			 \includegraphics[width=\scalegithub\textwidth]{GitHub-logo.png} };
+			
+% 			\node (pythonprogramimage) [ draw=none,yshift=-1.5mm, draw opacity=0, below=of githubtitle.west, typetag] {  \includegraphics[width=\scalegithub\textwidth]{python_code_for_background.png}  }; 
+			
+% 			\node (nodegithubpythonprogram)[cloud,line width=0.5mm,scale=0.45,aspect=2,
+% 			draw =blue,
+% 			text=cyan,fit={ (pythonprogramimage) (githubtitle)}] {}; 
+% 			% [cloud,draw=blue!50, fit={ (atul1) (githubtitle)}] {};
+% %			\node (nodepythonprogram) [draw=green, draw opacity=0.5, below=of githubtitle.west, typetag,  yshift=-14.5mm] {  \includegraphics[width=\scalegithub\textwidth]{python_code_for_background.png}  }; 
+% 	\end{tikzpicture}
+% }
+
+% \newsavebox\sniprdocker\sbox\sniprdocker{
+% 	\begin{tikzpicture}
+% 		[	node distance=2.5mm,
+% title/.style={font=\fontsize{6}{6}\color{black!50}\ttfamily},
+% typetag/.style={rectangle, draw=black!50, font=\scriptsize\ttfamily, anchor=west},
+% scale=3	]
+
+% \node (decomp) [title] { 			 \includegraphics[width=0.15\textwidth]{SNIPR-Logo.png} };
+% \node (decomp1) [below=of decomp.west, typetag,  yshift=-9.5mm, draw opacity=0]  { 			 \includegraphics[width=0.2\textwidth]{Docker-Logo-2013.png} };
+% \node (di) [below=of decomp1.west, typetag, xshift=9mm, yshift=-7.5mm, draw opacity=0] {  \includegraphics[width=0.05\textwidth]{ubuntu}  }; 
+% \node (dr) [below=of di.west, typetag, draw opacity=0] { \includegraphics[width=0.05\textwidth]{pythonLogo.png}   };
+% \node (dnc) [below=of dr.west, typetag,draw opacity=0] { \includegraphics[width=0.05\textwidth]{bash_logo.png}  };
+
+% \node (atul1) [circle,scale=0.7,draw=green!50, fit={ (di) (dr) (dnc)}] {};
+
+% \node (atul)[circle,draw=red!50,scale=0.65,fit={ (atul1) (decomp1)}] {}; 
+% \node (atul)[cloud,aspect=1.6,scale=0.6,draw=blue!50,fit={ (atul) (decomp)}] {}; 
+% %	\node (segm2biomark)  {\usebox\pipelinesteps};
+% 	\end{tikzpicture}
+% }
+
+% \newsavebox\sniprdockergithub\sbox\sniprdockergithub{
+% 	\begin{tikzpicture}
+% 	\node (github) [scale=1, inner sep = 0pt] at (0,0)  {\usebox\githubcode};
+% \node (snipr)[scale=1 , inner sep = 0pt]  at (-3.,-1.5) {\usebox\sniprdocker};
+% \path[draw={rgb:red,10;green,2;yellow,1},dashed, draw opacity=0.7, line width=2mm, -{Triangle[length=6mm,width=5mm,fill=none]}, shorten >=1.5mm, shorten <=-1mm]    
+% (github) to    (-2.8,-3);
+		
+% 	\end{tikzpicture}
+% }
+% %\newsavebox\doubleheadarrow\sbox\doubleheadarrow{
+% %	\begin{tikzpicture}
+% %\path[draw={rgb:red,10;green!50,12;yellow,1},dashed, line width=1mm, -{Triangle[length=2mm,width=3mm, bend]}, shorten >=1.5mm, shorten <=-1mm]    
+% %(0,0) to    (0,1); 
+% %\path[draw={rgb:red,10;green!50,12;yellow,1},dashed,rotate=180 ,line width=1mm, -{Triangle[length=2mm,width=3mm, bend]}, shorten >=1.5mm, shorten <=-1mm]    
+% %(0,0) to    (0,1);
+% %		
+% %	\end{tikzpicture}
+% %}
+% \newsavebox\sniprdockergithublocalcomputer\sbox\sniprdockergithublocalcomputer{
+% 	\begin{tikzpicture}		[	node distance=2.5mm,
+% 	title/.style={font=\fontsize{6}{6}\color{black!50}\ttfamily},
+% 	typetag/.style={rectangle, draw=black!50, font=\scriptsize\ttfamily, anchor=west},
+% 	scale=3	]
+	
+% 	\node (sniprdockergithub) [title,draw=gray] { \usebox\sniprdockergithub};
+% 	%	\node (sniprdockergithub) [scale=1, inner sep = 0pt] at (0,0)  {\usebox\sniprdockergithub};
+% 	\path(-1.8,0.68) pic (usercomputer) [
+% 	draw = blue,
+% 	fill = blue!30,
+% 	display/.append style = {left color=blue!80!black!80},
+% 	scale = 0.1,
+% 	pic text = YES
+% 	] {computer};
+% 	\path(-1.8,0.28) pic (usercomputer1) [
+% 	draw = blue,
+% 	fill = blue!30,
+% 	display/.append style = {left color=blue!80!black!80},
+% 	scale = 0.1,
+% 	pic text = YES
+% 	] {computer};
+% 	\path(-1.8,-.12) pic (usercomputer2) [
+% 	draw = blue,
+% 	fill = blue!30,
+% 	display/.append style = {left color=blue!80!black!80},
+% 	scale = 0.1,
+% 	pic text = YES
+% 	] {computer};
+% 	\path(-1.8,-.52) pic (usercomputer3) [
+% 	draw = blue,
+% 	fill = blue!30,
+% 	display/.append style = {left color=blue!80!black!80},
+% 	scale = 0.1,
+% 	pic text = YES
+% 	] {computer};
+% 	\node (arrow1) [scale=0.8,rotate=90, inner sep = 0pt] at (-1.44,-.52)  {\usebox\doubleheadarrow};
+% 	\node (arrow1) [scale=0.8,rotate=90, inner sep = 0pt] at (-1.44,-.12)  {\usebox\doubleheadarrow};
+% 	\node (arrow1) [scale=0.8,rotate=90, inner sep = 0pt] at (-1.44,.28)  {\usebox\doubleheadarrow};
+% 	\node (arrow1) [scale=0.8,rotate=90, inner sep = 0pt] at (-1.44,.68)  {\usebox\doubleheadarrow};
+% 	%		\node (arrow2) [scale=0.5,rotate=120, inner sep = 0pt] at (-3.7,1.5)  {\usebox\doubleheadarrow};
+% 	%	
+% 	%		\node (arrow3) [scale=0.5,rotate=150, inner sep = 0pt] at (-3.6,-1.1)  {\usebox\doubleheadarrow};
+% 	%				\node (arrow4) [scale=0.5,rotate=150, inner sep = 0pt] at (-3.6,0.2)  {\usebox\doubleheadarrow};
+% 	%%\path[draw={rgb:red,10;green,2;yellow,1}, line width=1.5mm, -{Triangle[length=6mm,width=3mm, bend]}, shorten >=1.5mm, shorten <=-1mm]    
+% 	%%  (-2.5,-1.5) to (-4.3,-2.5);
+% 	%%\path[draw={rgb:red,10;green,2;yellow,1}, line width=2.5mm, -{Triangle[length=6mm,width=6mm, bend]}, shorten >=1.5mm, shorten <=-1mm]    
+% 	%%  (sniprdockergithub) to (-5.,-2.5) ;
+% 	%
+% \end{tikzpicture}
+
+% }
+% \newsavebox\pipelinesteps\sbox\pipelinesteps{
+% 	\begin{tikzpicture}[node distance=2cm]
+		
+% 		\node (classification) [decision] {Image \\ Classification};
+% 		\node (dcm2nifti) [process, right of=classification, xshift=3.2cm] {DICOM to \\ NIFTI};
+% 		\node (scanselection) [decision, right of=dcm2nifti,xshift=3.4cm] {Scan selection};
+% 		\node (segmentation) [decision, right of=scanselection,xshift=3.6cm] {CSF and \\ Infarct\\ Segmentation};
+% 		\node (biomarkercomputation) [process, right of=segmentation,xshift=3.6cm] {Edema Biomarker \\ Computation};
+% 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+% 		\node (class2DCM) [xscale=2,yscale=2 ,rotate=-90,inner sep = 0pt] at (2.8,0)  {\usebox\singleheadarrow};
+% 		\node (dcm2scanselect) [xscale=2,yscale=2 ,rotate=-90,inner sep = 0pt] at (8.2,0)  {\usebox\singleheadarrow};
+% 		\node (scanselec2segm) [xscale=2,yscale=2 ,rotate=-90,inner sep = 0pt] at (13.5,0)  {\usebox\singleheadarrow};
+% 		\node (segm2biomark) [xscale=2,yscale=2 ,rotate=-90,inner sep = 0pt] at (19.4,0)  {\usebox\singleheadarrow};
+% 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 		\draw [red,line width=1mm, dashed,arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm] (0,1.65) -- (10.6,5); %(0,5);
+% 		\draw [red,line width=1mm,dashed, arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm]  (10.6,5) -- (0,1.65);
+		
+% 		\draw [red,line width=1mm, dashed,arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm] (5,0.5) -- (10.6,5);
+% 		\draw [red,line width=1mm,dashed, arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm]  (10.6,5) -- (5,0.5);
+		
+% 		\draw [red,line width=1mm, dashed,arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm] (10.6,1.5) -- (10.6,5);
+% 		\draw [red,line width=1mm,dashed, arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm]  (10.6,5) -- (10.6,1.5);
+		
+% 		\draw [red,line width=1mm, dashed,arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm] (16.2,1.9) -- (10.6,5);
+% 		\draw [red,line width=1mm,dashed, arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm]  (10.6,5) -- (16.2,1.9);
+		
+% 		\draw [red,line width=1mm, dashed,arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm] (21.7,0.6) -- (10.6,5);
+% 		\draw [red,line width=1mm,dashed, arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm]  (10.6,5) -- (21.7,0.6);
+% 		%				
+		
+		
+% 	\end{tikzpicture}
+% }
+
+% \newsavebox\pipelinestepsonly\sbox\pipelinestepsonly{
+% 	\begin{tikzpicture}[node distance=2cm]
+		
+% 		\node (classification) [decision,fill=red!60] {Image \\ Classification};
+% 		\node (dcm2nifti) [process, right of=classification, xshift=3.2cm] {DICOM to \\ NIFTI};
+% 		\node (scanselection) [decision, right of=dcm2nifti,xshift=3.4cm] {Scan selection};
+% 		\node (segmentation) [decision, right of=scanselection,xshift=3.6cm] {CSF and \\ Infarct\\ Segmentation};
+% 		\node (biomarkercomputation) [process, right of=segmentation,xshift=3.6cm] {Edema Biomarker \\ Computation};
+% 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+% 		\node (class2DCM) [xscale=2,yscale=2 ,rotate=-90,inner sep = 0pt] at (2.8,0)  {\usebox\singleheadarrow};
+% 		\node (dcm2scanselect) [xscale=2,yscale=2 ,rotate=-90,inner sep = 0pt] at (8.2,0)  {\usebox\singleheadarrow};
+% 		\node (scanselec2segm) [xscale=2,yscale=2 ,rotate=-90,inner sep = 0pt] at (13.5,0)  {\usebox\singleheadarrow};
+% 		\node (segm2biomark) [xscale=2,yscale=2 ,rotate=-90,inner sep = 0pt] at (19.4,0)  {\usebox\singleheadarrow};
+% 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %		\draw [red,line width=1mm, dashed,arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm] (0,1.65) -- (10.6,5); %(0,5);
+% %		\draw [red,line width=1mm,dashed, arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm]  (10.6,5) -- (0,1.65);
+% %		
+% %		\draw [red,line width=1mm, dashed,arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm] (5,0.5) -- (10.6,5);
+% %		\draw [red,line width=1mm,dashed, arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm]  (10.6,5) -- (5,0.5);
+% %		
+% %		\draw [red,line width=1mm, dashed,arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm] (10.6,1.5) -- (10.6,5);
+% %		\draw [red,line width=1mm,dashed, arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm]  (10.6,5) -- (10.6,1.5);
+% %		
+% %		\draw [red,line width=1mm, dashed,arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm] (16.2,1.9) -- (10.6,5);
+% %		\draw [red,line width=1mm,dashed, arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm]  (10.6,5) -- (16.2,1.9);
+% %		
+% %		\draw [red,line width=1mm, dashed,arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm] (21.7,0.6) -- (10.6,5);
+% %		\draw [red,line width=1mm,dashed, arrows = {-Stealth}, shorten >=0mm, shorten <=1.5mm]  (10.6,5) -- (21.7,0.6);
+% %		%				
+		
+		
+% 	\end{tikzpicture}
+% }
+
+
+% \newsavebox\sniprdockernopipeline\sbox\sniprdockernopipeline{
+% 	\begin{tikzpicture}
+% 		[	node distance=2.5mm,
+% 		title/.style={font=\fontsize{6}{6}\color{black!50}\ttfamily},
+% 		typetag/.style={rectangle, draw=black!50, font=\scriptsize\ttfamily, anchor=west},
+% 		scale=3	]
+		
+% 		\node (decomp) [title] { \includegraphics[width=0.5\textwidth]{SNIPR-Logo.png} };
+		
+% 		%		\begin{scope}[yshift=-10]
+% 			\node (decomp1) [below=of decomp, typetag, xshift=-20, ,draw opacity=0]  { 			 \includegraphics[width=0.15\textwidth]{Docker-Logo-2013.png} };
+% 			\node (di) [below=of decomp1, typetag, xshift=-12, draw opacity=0] {  \includegraphics[width=0.05\textwidth]{ubuntu}  }; 
+% 			\node (dr) [below=of di, typetag,xshift=-13,yshift=7, draw opacity=0] { \includegraphics[width=0.05\textwidth]{pythonLogo.png}   };
+% 			\node (dnc) [below=of dr, typetag,xshift=-7,yshift=7,draw opacity=0] { \includegraphics[width=0.03\textwidth]{latex-logo.png}  };
+% 			%		\end{scope}
+% 		%
+% 		%		
+% 		\node (atul1) [circle,line width=1mm,scale=0.55,draw=green!50, fit={ (di) (dr) (dnc)}] {};
+% 		%
+% 		%
+% 		\node (atul)[circle,line width=1mm,draw=red!50,scale=0.65,fit={ (atul1) (decomp1)  }] {}; 
+% %		\node (segm2biomark) [scale=0.3, below=of atul,yshift=28] {\usebox\pipelinesteps};
+% 		\node (atul2)[cloud,line width=1mm,aspect=1.9,scale=0.65,draw=blue!50,fit={ (atul) (decomp) }] {}; 
+		
+		
+		
+% 	\end{tikzpicture}
+% }
+
+% \newsavebox\sniprdockerpipeline\sbox\sniprdockerpipeline{
+% 	\begin{tikzpicture}
+% 		[	node distance=2.5mm,
+% 		title/.style={font=\fontsize{6}{6}\color{black!50}\ttfamily},
+% 		typetag/.style={rectangle, draw=black!50, font=\scriptsize\ttfamily, anchor=west},
+% 		scale=3	]
+
+% 		\node (decomp) [title] { \includegraphics[width=0.5\textwidth]{SNIPR-Logo.png} };
+
+% %		\begin{scope}[yshift=-10]
+% 		\node (decomp1) [below=of decomp, typetag, xshift=-20, ,draw opacity=0]  { 			 \includegraphics[width=0.15\textwidth]{Docker-Logo-2013.png} };
+% 		\node (di) [below=of decomp1, typetag, xshift=-12, draw opacity=0] {  \includegraphics[width=0.05\textwidth]{ubuntu}  }; 
+% 		\node (dr) [below=of di, typetag,xshift=-13,yshift=7, draw opacity=0] { \includegraphics[width=0.05\textwidth]{pythonLogo.png}   };
+% 		\node (dnc) [below=of dr, typetag,xshift=-7,yshift=7,draw opacity=0] { \includegraphics[width=0.03\textwidth]{latex-logo.png}  };
+% %		\end{scope}
+% %
+% %		
+% 		\node (atul1) [circle,line width=1mm,scale=0.55,draw=green!50, fit={ (di) (dr) (dnc)}] {};
+% %
+% %
+% 		\node (atul)[circle,line width=1mm,draw=red!50,scale=0.65,fit={ (atul1) (decomp1)  }] {}; 
+% 							\node (segm2biomark) [scale=0.3, below=of atul,yshift=28] {\usebox\pipelinesteps};
+% 		\node (atul2)[cloud,line width=1mm,aspect=1.6,scale=0.75,draw=blue!50,fit={ (atul) (decomp) (segm2biomark)}] {}; 
+
+
+
+% 	\end{tikzpicture}
+% }
+% \newsavebox\sniprdockergithubpipeline\sbox\sniprdockergithubpipeline{
+% 	\begin{tikzpicture}
+% 		\node (github) [scale=1, inner sep = 0pt] at (3,1.5)  {\usebox\githubcode};
+% 		\node (snipr)[scale=1 , inner sep = 0pt]  at (-3.,-1.5) {\usebox\sniprdockerpipeline};
+% 		\path[draw={rgb:red,10;green,2;yellow,1},dashed, draw opacity=0.7, line width=2mm, -{Triangle[length=6mm,width=5mm,fill=none]}, shorten >=1.5mm, shorten <=-1mm]    
+% 		(github) to    (-2.5,-2);
+		
+% 	\end{tikzpicture}
+% }
+% \newsavebox\sniprdockergithubnopipeline\sbox\sniprdockergithubnopipeline{
+% 	\begin{tikzpicture}
+% 		\node (github) [scale=1, inner sep = 0pt] at (1.5,1.5)  {\usebox\githubcode};
+% 		\node (snipr)[scale=1 , inner sep = 0pt]  at (-3.,-1.5) {\usebox\sniprdockernopipeline};
+% 		\path[draw={rgb:red,10;green,2;yellow,1},dashed, draw opacity=0.7, line width=2mm, -{Triangle[length=6mm,width=5mm,fill=none]}, shorten >=1.5mm, shorten <=-1mm]    
+% 		(github) to    (-1.8,-3.5);
+		
+% 	\end{tikzpicture}
+% }
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newsavebox\clusterone\sbox\clusterone{
+% 	\begin{tikzpicture}
+		
+% 		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP2_CT_2_SCOUT.png}};
+
+% 		\node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP2_CT_2_Infarct.png}};
+
+% 		\node (image3) [scale=1, below=of image1, inner sep = 0pt,xshift=-18] { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP2_CT_2_ctaaxial.png
+% 		}};
+
+% 		\node (image4) [scale=1, below=of image2,  inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP2_CT_2_ctacoronal.png}};
+
+
+% 		\node (image2_boundary) [rectangle,line width=2mm,draw=blue!50, fit={(image1)(image2)(image3)(image4)}] {};
+% 		\node (image2_boundary) [rectangle,line width=1mm,fill=black] at (0,0){};
+% 	\end{tikzpicture}
+% }
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newsavebox\clustertwo\sbox\clustertwo{
+% 	\begin{tikzpicture}
+		
+% 		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP8_CT_2_SCOUT.png}};
+
+% \node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP8_CT_2_Infarct.png}};
+
+% \node (image3) [scale=1, below=of image1, inner sep = 0pt,xshift=-18] { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP8_CT_2_ctaaxial.png
+% }};
+
+% \node (image4) [scale=1, below=of image2,  inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP8_CT_2_ctasagittal.png}};
+
+
+% \node (image2_boundary) [rectangle,line width=2mm,draw=blue!50, fit={(image1)(image2)(image3)(image4)}] {};
+% \node (image2_boundary) [rectangle,line width=1mm,fill=black] at (0,0){};
+% 	\end{tikzpicture}
+% }
+
+% \newsavebox\clusterthree\sbox\clusterthree{
+% 	\begin{tikzpicture}
+		
+% 		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP11_CT_2_SCOUT.png}};
+		
+% 		\node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP11_CT_2_Infarct.png}};
+		
+% 		\node (image3) [scale=1, below=of image1, inner sep = 0pt,xshift=-18] { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP11_CT_2_ctaaxial.png
+% 		}};
+		
+% 		\node (image4) [scale=1, below=of image2,  inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{COLI_HLP11_CT_2_ctasagittal.png}};
+		
+		
+% 		\node (image2_boundary) [rectangle,line width=2mm,draw=blue!50, fit={(image1)(image2)(image3)(image4)}] {};
+% 		\node (image2_boundary) [rectangle,line width=1mm,fill=black] at (0,0){};
+% 	\end{tikzpicture}
+% }
+% %%% ICH clusters
+% \newsavebox\ichclusterone\sbox\ichclusterone{
+% 	\begin{tikzpicture}
+		
+% 		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0004_CT_20170106_SCOUT.png}};
+		
+% 		\node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0004_CT_20170106_axial.png}};
+		
+% 		\node (image3) [scale=1, below=of image1, inner sep = 0pt,xshift=-18] { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0004_CT_20170106_angio.png
+% 		}};
+		
+% 		\node (image4) [scale=1, below=of image2,  inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0004_CT_20170106_sagittal.png}};
+		
+		
+% 		\node (image2_boundary) [rectangle,line width=2mm,draw=blue!50, fit={(image1)(image2)(image3)(image4)}] {};
+% 		\node (image2_boundary) [rectangle,line width=1mm,fill=black] at (0,0){};
+% 	\end{tikzpicture}
+% }
+% \newsavebox\ichclustertwo\sbox\ichclustertwo{
+% 	\begin{tikzpicture}
+		
+% 		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0005_CT_20170106_SCOUT.png}};
+		
+% 		\node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0005_CT_20170106_axial.png}};
+		
+% 		\node (image3) [scale=1, below=of image1, inner sep = 0pt,xshift=-18] { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0005_CT_20170106_angio.png
+% 		}};
+		
+% 		\node (image4) [scale=1, below=of image2,  inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0005_CT_20170106_sagittal.png}};
+		
+		
+% 		\node (image2_boundary) [rectangle,line width=2mm,draw=blue!50, fit={(image1)(image2)(image3)(image4)}] {};
+% 		\node (image2_boundary) [rectangle,line width=1mm,fill=black] at (0,0){};
+% 	\end{tikzpicture}
+% }
+% \newsavebox\ichclusterthree\sbox\ichclusterthree{
+% 	\begin{tikzpicture}
+		
+% 		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0019_CT_20170123_SCOUT.png}};
+		
+% 		\node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-20,yshift=1]  { \scalebox{-1}[1]{\includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0019_01232017_2004_4_resaved_levelset_34.png}}};
+% 		%ICH_0019_CT_20170123_AXIAL.png}};
+		
+% 		\node (image3) [scale=1, below=of image1, inner sep = 0pt,xshift=0,yshift=25] { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0019_CT_20170123_ANGIOAXIAL.png
+% 		}};
+		
+% 		\node (image4) [scale=1, below=of image2,  inner sep = 0pt,yshift=24]   { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ICH_0019_CT_20170123_coronal.png}};
+		
+		
+% 		\node (image2_boundary) [rectangle,line width=2mm,draw=blue!50, fit={(image1)(image2)(image3)(image4)}] {};
+% 		\node (image2_boundary) [rectangle,line width=1mm,fill=black] at (0,0){};
+% 	\end{tikzpicture}
+% }
+
+% %infarct cohort clusters combination
+
+
+
+% \newsavebox\unclassifiedimages\sbox\unclassifiedimages{
+% 	\begin{tikzpicture}
+
+% 	\node (image1) [scale=1,inner sep = 0pt] at (0,0)  { \includegraphics[width=0.5\textwidth]{nonaxialct4.png}};
+% %	\node (image1_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image1)}] {};
+% 	\node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  { \includegraphics[width=0.5\textwidth]{brainaxial4.png}};
+% 	%	\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image2)}] {};
+% 	\node (image3) [scale=1, right=of image2, inner sep = 0pt,xshift=-18] { \includegraphics[width=0.5\textwidth]{nonaxialbrain2.png}};
+% 	%		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image3)}] {};
+% 	\node (image4) [scale=1, below=of image1,  inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth]{axialbrain.png}};
+% 	%			\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image4)}] {};
+% 	\node (image5) [scale=1, below=of image2,  inner sep = 0pt,yshift=17] { \includegraphics[width=0.5\textwidth]{nonbrainct1.png }};
+% 		%		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image5)}] {};
+% 	\node (image6) [scale=1, below=of image3, inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth]{brainaxial2.png}};
+% 		\node (image2_boundary) [rectangle,line width=2mm,draw=blue!50, fit={(image1)(image2)(image3)(image4)(image5) (image6)}] {};
+	
+% 		%		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image6)}] {};
+
+
+% %		\node (snipr)[scale=1 , inner sep = 0pt]  at (-3.,-1.5) {\usebox\sniprdockerpipeline};
+% %		\path[draw={rgb:red,10;green,2;yellow,1},dashed, draw opacity=0.7, line width=2mm, -{Triangle[length=6mm,width=5mm,fill=none]}, shorten >=1.5mm, shorten <=-1mm]    
+% %		(github) to    (-2.5,-2);
+% 			\node (image2_boundary) [rectangle,line width=1mm,fill=black] at (0,0){};
+% 	\end{tikzpicture}
+% }
+
+% \newsavebox\unclassifiedimagesinfarct\sbox\unclassifiedimagesinfarct{
+% 	\begin{tikzpicture}
+		
+% 		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  { \includegraphics[width=0.5\textwidth]{COLI_HLP12_CT_1_SCOUT.png }};
+% %	\node (image1_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image1)}] {};
+% \node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  { \scalebox{-1}[1]{\includegraphics[width=0.5\textwidth]{COLI_HLP12_09132020_1947_4_resaved_levelset_15_GRAY.png }}};
+% %	\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image2)}] {};
+% %	\node (image3) [scale=1, right=of image2, inner sep = 0pt,xshift=-18] { \includegraphics[width=0.5\textwidth]{brainaxial4.png}};
+% %		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image3)}] {};
+% %	\node (image4) [scale=1, below=of image1,  inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth]{axialbrain.png}};
+% %			\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image4)}] {};
+% \node (image5) [scale=1, below=of image1,  inner sep = 0pt,yshift=17] { \includegraphics[width=0.5\textwidth]{COLI_HLP12_CT_1_ANGIOAXIAL1.png }};
+% %		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image5)}] {};
+% \node (image6) [scale=1, below=of image2, inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth]{COLI_HLP12_CT_1_CTA_SAGITTAL.png}};
+% \node (image2_boundary) [rectangle,line width=2mm,draw=blue!50, fit={(image1)(image2)(image5) (image6)}] {};
+
+% %(image3)(image4)		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image6)}] {};
+
+
+% %		\node (snipr)[scale=1 , inner sep = 0pt]  at (-3.,-1.5) {\usebox\sniprdockerpipeline};
+% %		\path[draw={rgb:red,10;green,2;yellow,1},dashed, draw opacity=0.7, line width=2mm, -{Triangle[length=6mm,width=5mm,fill=none]}, shorten >=1.5mm, shorten <=-1mm]    
+% %		(github) to    (-2.5,-2);
+% \node (image2_boundary) [rectangle,line width=1mm,fill=black] at (0,0){};
+% 	\end{tikzpicture}
+% }
+% \newsavebox\unclassifiedimagesich\sbox\unclassifiedimagesich{
+% 	\begin{tikzpicture}
+		
+% 		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  { \scalebox{1}[-1]{\includegraphics[width=0.5\textwidth,height=0.5\textwidth,angle=90]{ICH_002_CT_Scout.png }}};
+% 		%	\node (image1_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image1)}] {};
+% 		\node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{grayscaleimage_ich.png }};
+% 		%	\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image2)}] {};
+% 	%	\node (image3) [scale=1, right=of image2, inner sep = 0pt,xshift=-18] { \includegraphics[width=0.5\textwidth]{brainaxial4.png}};
+% 		%		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image3)}] {};
+% 	%	\node (image4) [scale=1, below=of image1,  inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth]{axialbrain.png}};
+% 		%			\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image4)}] {};
+% 		\node (image5) [scale=1, below=of image1, xshift=0, inner sep = 0pt,yshift=17] { \includegraphics[width=0.6\textwidth,height=0.5\textwidth]{ICH_0002_20170101_CTA_AXIAL.png }};
+% 		%		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image5)}] {};
+% 		\node (image6) [scale=1, below=of image2, inner sep = 0pt,yshift=17,xshift=20]   { \includegraphics[width=0.5\textwidth,height=0.5\textwidth]{ ICH_0002_20170101_CTA_SAGITTAL.png}};
+% 		\node (image2_boundary) [rectangle,line width=2mm,draw=blue!50, fit={(image1)(image2)(image5) (image6)}] {};
+		
+% 		%(image3)(image4)		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image6)}] {};
+		
+		
+% 		%		\node (snipr)[scale=1 , inner sep = 0pt]  at (-3.,-1.5) {\usebox\sniprdockerpipeline};
+% 		%		\path[draw={rgb:red,10;green,2;yellow,1},dashed, draw opacity=0.7, line width=2mm, -{Triangle[length=6mm,width=5mm,fill=none]}, shorten >=1.5mm, shorten <=-1mm]    
+% 		%		(github) to    (-2.5,-2);
+% 		\node (image2_boundary) [rectangle,line width=1mm,fill=black] at (0,0){};
+% 	\end{tikzpicture}
+% }
+
+% \newsavebox\clusterinfarctcohort\sbox\clusterinfarctcohort{
+% 	\begin{tikzpicture}
+% 		%		\node (clusterone) [yshift=-70,scale=0.7,below=of sniprlogo] {\usebox\clusterone};
+		
+		
+% 		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  {\usebox\clusterone};
+% 		%	\node (image1_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image1)}] {};
+% 		\node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  {\usebox\clustertwo};
+% 		%	\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image2)}] {};
+% 		\node (image3) [scale=1, below=of image1, inner sep = 0pt,xshift=-18] {\usebox\clusterthree};
+% 		%		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image3)}] {};
+% 		\node (image4) [scale=1, below=of image2,  inner sep = 0pt,yshift=17]   {\usebox\unclassifiedimagesinfarct};
+% 		%			\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image4)}] {};
+% %		\node (image5) [scale=1, below=of image2,  inner sep = 0pt,yshift=17] {\usebox\clusterone};
+% %		%		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image5)}] {};
+% %		\node (image6) [scale=1, below=of image3, inner sep = 0pt,yshift=17]   {\usebox\clusterone};
+% 		\node (image2_boundary) [rectangle,line width=2mm,draw=blue!50, fit={(image1)(image2)(image3)(image4)}] {};
+% 		\node (image2_boundary) [rectangle,line width=1mm,fill=black] at (0,0){};
+% 	\end{tikzpicture}
+% }
+
+% \newsavebox\clusterichcohort\sbox\clusterichcohort{
+% 	\begin{tikzpicture}
+% 		%		\node (clusterone) [yshift=-70,scale=0.7,below=of sniprlogo] {\usebox\clusterone};
+		
+		
+% 		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  {\usebox\ichclusterone};
+% 		%	\node (image1_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image1)}] {};
+% 		\node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  {\usebox\ichclusterthree};
+% 		%	\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image2)}] {};
+% 		\node (image3) [scale=1, below=of image1, inner sep = 0pt,xshift=-18] {\usebox\ichclustertwo};
+% 		%		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image3)}] {};
+% 		\node (image4) [scale=1, below=of image2,  inner sep = 0pt,yshift=17]   {\usebox\unclassifiedimagesich};
+% 		%			\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image4)}] {};
+% 		%		\node (image5) [scale=1, below=of image2,  inner sep = 0pt,yshift=17] {\usebox\clusterone};
+% 		%		%		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image5)}] {};
+% 		%		\node (image6) [scale=1, below=of image3, inner sep = 0pt,yshift=17]   {\usebox\clusterone};
+% 				\node (image2_boundary) [rectangle,line width=2mm,draw=blue!50, fit={(image1)(image2)(image3)(image4)}] {};
+% 		\node (image2_boundary) [rectangle,line width=1mm,fill=black] at (0,0){};
+% 	\end{tikzpicture}
+% }
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newsavebox\classifiedimages\sbox\classifiedimages{
+% 	\begin{tikzpicture}
+% 		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  { \includegraphics[width=0.5\textwidth]{brainaxial2.png}};
+% 	%	\node (image1_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image1)}] {};
+% 		\node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  { \includegraphics[width=0.5\textwidth]{brainaxial4.png}};
+% 	%	\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image2)}] {};
+% 		\node (image3) [scale=1, right=of image2, inner sep = 0pt,xshift=-18] { \includegraphics[width=0.5\textwidth]{axialbrain.png}};
+% 	\node (image2_boundary) [rectangle,line width=1mm,draw=green!150, fit={ (image1) (image2) (image3)}] {};
+% %		\node (image4) [scale=1, below=of image1,  inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth]{nonaxialct4.png}};
+% %		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image4)}] {};
+% %		\node (image5) [scale=1, below=of image2,  inner sep = 0pt,yshift=17] { \includegraphics[width=0.5\textwidth]{nonaxialbrain1.png}};
+% %		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image5)}] {};
+% %		\node (image6) [scale=1, below=of image3, inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth]{nonaxialbrain2.png}};
+% %		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image6)}] {};
+		
+		
+% 		%		\node (snipr)[scale=1 , inner sep = 0pt]  at (-3.,-1.5) {\usebox\sniprdockerpipeline};
+% 		%		\path[draw={rgb:red,10;green,2;yellow,1},dashed, draw opacity=0.7, line width=2mm, -{Triangle[length=6mm,width=5mm,fill=none]}, shorten >=1.5mm, shorten <=-1mm]    
+% 		%		(github) to    (-2.5,-2);
+		
+% 	\end{tikzpicture}
+% }
+% \newsavebox\classifiedimagesone\sbox\classifiedimagesone{
+% 	\begin{tikzpicture}
+% %		\node (image1) [scale=1,inner sep = 0pt] at (0,0)  { \includegraphics[width=0.5\textwidth]{brainaxial2.png}};
+% %		\node (image1_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image1)}] {};
+% %		\node (image2) [scale=1, right=of image1, inner sep = 0pt,xshift=-18]  { \includegraphics[width=0.5\textwidth]{brainaxial4.png}};
+% %		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image2)}] {};
+% %		\node (image3) [scale=1, right=of image2, inner sep = 0pt,xshift=-18] { \includegraphics[width=0.5\textwidth]{axialbrain.png}};
+% %		\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image3)}] {};
+% 		\node (image4) [scale=1, below=of image1,  inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth]{nonaxialct4.png}};
+% 	%	\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image4)}] {};
+% 		\node (image5) [scale=1, below=of image2,  inner sep = 0pt,yshift=17] { \includegraphics[width=0.5\textwidth]{nonbrainct1.png }};
+% 		%\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image5)}] {};
+% 		\node (image6) [scale=1, below=of image3, inner sep = 0pt,yshift=17]   { \includegraphics[width=0.5\textwidth]{nonaxialbrain2.png}};
+% 	%	\node (image2_boundary) [rectangle,line width=1mm,draw=green!50, fit={ (image6)}] {};
+% 		\node (image2_boundary) [rectangle,line width=1mm,draw=red!150, fit={ (image4) (image5) (image6)}] {};
+		
+		
+% 		%		\node (snipr)[scale=1 , inner sep = 0pt]  at (-3.,-1.5) {\usebox\sniprdockerpipeline};
+% 		%		\path[draw={rgb:red,10;green,2;yellow,1},dashed, draw opacity=0.7, line width=2mm, -{Triangle[length=6mm,width=5mm,fill=none]}, shorten >=1.5mm, shorten <=-1mm]    
+% 		%		(github) to    (-2.5,-2);
+		
+% 	\end{tikzpicture}
+% }
+\newsavebox\threeDmatrix\sbox\threeDmatrix{
+	\begin{tikzpicture}[x=(15:.5cm), y=(90:.5cm), z=(330:.5cm), >=stealth]
+		\draw (0, 0, 0) -- (0, 0, 10) (4, 0, 0) -- (4, 0, 10);
+		\foreach \z in {0, 5, 10} \foreach \x in {0,...,3}
+		\foreach \y [evaluate={\b=random(0, 255);}] in {0,...,3}
+		\filldraw [fill=white] (\x, \y, \z) -- (\x+1, \y, \z) -- (\x+1, \y+1, \z) --
+		(\x, \y+1, \z) -- cycle (\x+.5, \y+.5, \z) node [yslant=tan(15)] {\b};
+		\draw [dashed] (0, 4, 0) -- (0, 4, 10) (4, 4, 0) -- (4, 4, 10);
+		\draw [->] (0, 4.5, 0)  -- (4, 4.5, 0)   node [near end, above left] {Column};
+		\draw [->] (-.5, 4, 0)  -- (-.5, 0, 0)   node [midway, left] {Row};
+		\draw [->] (4, 4.5, 10) -- (4, 4.5, 2.5) node [near end, above right] {Channel};
+	\end{tikzpicture}%
+}
+\begin{document}
+%\input{method}
+\input{flowchart_lungatelectasis_project1}
+	
+\end{document}
