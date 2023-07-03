@@ -1194,15 +1194,16 @@ def imagesfor_presentation_grayscale(lung_gray,savetodir):
         # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
         saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
         print(" I PASSED AT " + inspect.stack()[0][3])
-        subprocess.call("echo " + "imagesfor_presentation_grayscale::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "imagesfor_presentation_grayscale::{}  >> /workingoutput/error.txt".format(lung_gray) ,shell=True )
+        subprocess.call("echo " + "PASSED AT::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "lung_gray filename::{}  >> /workingoutput/error.txt".format(lung_gray) ,shell=True )
     except Exception:
         subprocess.call("echo " + "FAILED AT ::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
         subprocess.call("echo " + "EXCEPTION::{}  >> /workingoutput/error.txt".format(Exception) ,shell=True )
     return
 def imagesfor_presentation_masks(lung_mask,savetodir):
     try:
-
+        subprocess.call("echo " + "PASSED AT ::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "lungmaskfilename::{}  >> /workingoutput/error.txt".format(lung_mask) ,shell=True )
         filename_gray_data_np=nib.load(lung_mask).get_fdata()
         img_gray_data=filename_gray_data_np #exposure.rescale_intensity( filename_gray_data_np , in_range=(-1000, 500))
         img_gray_data[img_gray_data>0]=255
