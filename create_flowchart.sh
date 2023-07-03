@@ -288,7 +288,8 @@ downloadniftiwithuri_withcsv()" ${csvfilename}  ${dir_to_save}
 
 }
 
-download_files_in_a_resource() {
+
+function  download_files_in_a_resource() {
 local sessionId=${1} #sys.argv[1]
 local scanID=${2}
 local resource_dirname=${3} #sys.argv[2]
