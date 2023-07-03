@@ -57,22 +57,6 @@ def combinecsvs_withprefix(inputdirectory,outputdirectory,outputfilename,prefix)
 def call_get_all_EDEMA_BIOMARKER_csvfiles_of_allselectedscan():
     working_directory=sys.argv[1]
     get_all_EDEMA_BIOMARKER_csvfiles_of_ascan(working_directory)
-def listoffile_witha_URI_as_df(URI):
-    xnatSession = XnatSession(username=XNAT_USER, password=XNAT_PASS, host=XNAT_HOST)
-    xnatSession.renew_httpsession()
-    # print("I AM IN :: listoffile_witha_URI_as_df::URI::{}".format(URI))
-    response = xnatSession.httpsess.get(xnatSession.host + URI)
-    # print("I AM IN :: listoffile_witha_URI_as_df::URI::{}".format(URI))
-    num_files_present=0
-    df_scan=[]
-    if response.status_code != 200:
-        xnatSession.close_httpsession()
-        return num_files_present
-    metadata_masks=response.json()['ResultSet']['Result']
-    df_listfile = pd.read_json(json.dumps(metadata_masks))
-    xnatSession.close_httpsession()
-    return df_listfile
-
 def download_a_singlefile_with_URIString(url,filename,dir_to_save):
     print("url::{}::filename::{}::dir_to_save::{}".format(url,filename,dir_to_save))
     xnatSession = XnatSession(username=XNAT_USER, password=XNAT_PASS, host=XNAT_HOST)
@@ -88,25 +72,52 @@ def download_a_singlefile_with_URIString(url,filename,dir_to_save):
                 f.write(chunk)
     xnatSession.close_httpsession()
     return zipfilename
-
-def download_files_in_a_resource_withname_sh():
+def listoffile_witha_URI_as_df(URI):
+    xnatSession = XnatSession(username=XNAT_USER, password=XNAT_PASS, host=XNAT_HOST)
+    xnatSession.renew_httpsession()
+    # print("I AM IN :: listoffile_witha_URI_as_df::URI::{}".format(URI))
+    response = xnatSession.httpsess.get(xnatSession.host + URI)
+    # print("I AM IN :: listoffile_witha_URI_as_df::URI::{}".format(URI))
+    num_files_present=0
+    df_scan=[]
+    if response.status_code != 200:
+        xnatSession.close_httpsession()
+        return num_files_present
+    metadata_masks=response.json()['ResultSet']['Result']
+    df_listfile = pd.read_json(json.dumps(metadata_masks))
+    xnatSession.close_httpsession()
+    return df_listfile
+    
+def download_files_in_scans_resources_withname_sh():
     sessionId=sys.argv[1]
-    resource_dirname=sys.argv[2]
-    dir_to_save=sys.argv[2]
+    scan_id=sys.argv[2]
+    resource_dirname=sys.argv[3]
+    dir_to_save=sys.argv[4]
     try:
-        URI = (("/data/experiments/%s/resources/" + resource_dirname+ "/files?format=json")  %
+        URI = (("/data/experiments/%s")  %
                (sessionId))
-        df_listfile=listoffile_witha_URI_as_df(URI)
-        print("df_listfile::{}".format(df_listfile))
-        # download_a_singlefile_with_URLROW(df_listfile,dir_to_save)
-        for item_id, row in df_listfile.iterrows():
-            # print("row::{}".format(row))
-            # download_a_singlefile_with_URLROW(row,dir_to_save)
-            download_a_singlefile_with_URIString(row['URI'],row['Name'],dir_to_save)
-            print("DOWNLOADED ::{}".format(row))
+        session_meta_data=get_metadata_session(URI)
+        session_meta_data_df = pd.read_json(json.dumps(session_meta_data))
+        for index, row in session_meta_data_df.iterrows():
+
+            URI = ((row["URI"]+"/resources/" + resource_dirname+ "/files?format=json")  %
+                   (sessionId))
+            df_listfile=listoffile_witha_URI_as_df(URI)
+            print("df_listfile::{}".format(df_listfile))
+            # download_a_singlefile_with_URLROW(df_listfile,dir_to_save)
+            for item_id, row in df_listfile.iterrows():
+                if str(row["ID"])==str(scan_id):
+                    # print("row::{}".format(row))
+                    # download_a_singlefile_with_URLROW(row,dir_to_save)
+                    download_a_singlefile_with_URIString(row['URI'],row['Name'],dir_to_save)
+                    print("DOWNLOADED ::{}".format(row))
+                    print("PASSED AT ::{}".format("download_files_in_a_resource"))
+
     except:
         print("FAILED AT ::{}".format("download_files_in_a_resource"))
         pass
+
+
 
 def call_get_all_CSV_PDF_OF_A_RESOURCE_IN_A_PROJECT():
     working_directory=sys.argv[1]
