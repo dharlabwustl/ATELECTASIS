@@ -1185,12 +1185,19 @@ def call_saveslicesofnumpy3D(args):
     savetodir=save_dir
     saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
 def imagesfor_presentation_grayscale(lung_gray,savetodir):
-    filename_gray_data_np=nib.load(lung_gray).get_fdata()
-    img_gray_data=exposure.rescale_intensity( filename_gray_data_np , in_range=(-1000, 500))
-    img_gray_data=img_gray_data*255
-    savefilename=lung_gray #.split('.nii.gz')[0]+"w.nii.gz"
-    # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
-    saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
+    try:
+
+        filename_gray_data_np=nib.load(lung_gray).get_fdata()
+        img_gray_data=exposure.rescale_intensity( filename_gray_data_np , in_range=(-1000, 500))
+        img_gray_data=img_gray_data*255
+        savefilename=lung_gray #.split('.nii.gz')[0]+"w.nii.gz"
+        # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
+        saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
+        subprocess.call("echo " + "imagesfor_presentation_grayscale::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "imagesfor_presentation_grayscale::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
+    except Exception:
+        subprocess.call("echo " + "FAILED AT ::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "EXCEPTION::{}  >> /workingoutput/error.txt".format(Exception) ,shell=True )
     return
 def imagesfor_presentation_masks(lung_mask,savetodir):
     filename_gray_data_np=nib.load(lung_mask).get_fdata()
