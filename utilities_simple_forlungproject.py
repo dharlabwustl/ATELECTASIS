@@ -1202,7 +1202,7 @@ def imagesfor_presentation_grayscale(lung_gray,savetodir):
     return
 def imagesfor_presentation_masks(lung_mask,savetodir):
     try:
-        subprocess.call("echo " + "PASSED AT ::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        # subprocess.call("echo " + "PASSED AT ::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
         subprocess.call("echo " + "lungmaskfilename::{}  >> /workingoutput/error.txt".format(lung_mask) ,shell=True )
         filename_gray_data_np=nib.load(lung_mask).get_fdata()
         img_gray_data=filename_gray_data_np #exposure.rescale_intensity( filename_gray_data_np , in_range=(-1000, 500))
