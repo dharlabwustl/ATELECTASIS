@@ -1193,8 +1193,9 @@ def imagesfor_presentation_grayscale(lung_gray,savetodir):
         savefilename=lung_gray #.split('.nii.gz')[0]+"w.nii.gz"
         # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
         saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
+        print(" I PASSED AT " + inspect.stack()[0][3])
         subprocess.call("echo " + "imagesfor_presentation_grayscale::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "imagesfor_presentation_grayscale::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
+        subprocess.call("echo " + "imagesfor_presentation_grayscale::{}  >> /workingoutput/error.txt".format(lung_gray) ,shell=True )
     except Exception:
         subprocess.call("echo " + "FAILED AT ::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
         subprocess.call("echo " + "EXCEPTION::{}  >> /workingoutput/error.txt".format(Exception) ,shell=True )
@@ -1209,10 +1210,10 @@ def imagesfor_presentation_masks(lung_mask,savetodir):
         # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
         saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
         subprocess.call("echo " + "imagesfor_presentation_masks::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "imagesfor_presentation_masks::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
+        subprocess.call("echo " + "imagesfor_presentation_masks::{}  >> /workingoutput/error.txt".format(lung_mask) ,shell=True )
     except Exception:
         subprocess.call("echo " + "imagesfor_presentation_masks::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "imagesfor_presentation_masks::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
+        subprocess.call("echo " + "imagesfor_presentation_masks::{}  >> /workingoutput/error.txt".format(Exception) ,shell=True )
 
     return
 def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,savetodir,ext_img=".jpg"):
@@ -1237,10 +1238,10 @@ def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,s
             print("{}".format(filetoseave))
             cv2.imwrite(filetoseave,I)
         subprocess.call("echo " + "mask_on_image_color::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "mask_on_image_color::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
+        subprocess.call("echo " + "mask_on_image_color::{}  >> /workingoutput/error.txt".format(maskimagefile) ,shell=True )
     except Exception:
         subprocess.call("echo " + "mask_on_image_color::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "mask_on_image_color::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
+        subprocess.call("echo " + "mask_on_image_color::{}  >> /workingoutput/error.txt".format(maskimagefile) ,shell=True )
     return filetoseave
 def imagesfor_presentation_maskimagedata(filename_gray_data_np,savefilename,savetodir):
     try:
@@ -1252,10 +1253,10 @@ def imagesfor_presentation_maskimagedata(filename_gray_data_np,savefilename,save
         # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
         saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
         subprocess.call("echo " + "imagesfor_presentation_maskimagedata::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "imagesfor_presentation_maskimagedata::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
+        subprocess.call("echo " + "imagesfor_presentation_maskimagedata::{}  >> /workingoutput/error.txt".format(savefilename) ,shell=True )
     except Exception:
         subprocess.call("echo " + "imagesfor_presentation_maskimagedata::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "imagesfor_presentation_maskimagedata::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
+        subprocess.call("echo " + "imagesfor_presentation_maskimagedata::{}  >> /workingoutput/error.txt".format(Exception) ,shell=True )
     return
 # def imagesfor_presentation():
 #     savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
@@ -1298,8 +1299,8 @@ def create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvat
         ## grayscale image: we have these
         # gray_image_filename="/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/ACIB380_20150903000729_C_A_P_CM_25_B20s.nii.gz"
         imagesfor_presentation_grayscale(gray_image_filename,savetodir)
-        subprocess.call("echo " + "create_imagesfor_presentation::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "create_imagesfor_presentation::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
+        # subprocess.call("echo " + "create_imagesfor_presentation::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        # subprocess.call("echo " + "create_imagesfor_presentation::{}  >> /workingoutput/error.txt".format(gray_image_filename) ,shell=True )
         # ## lung mask image: we have these
         # ## mask of curvatures in the lungs: we have these
         # ## lung mask area after subtraction of the curvatures area:
