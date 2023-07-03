@@ -380,6 +380,8 @@ resource_dirname="PROCESSING_FILES"
 dir_to_save=${OUTPUTDIRNAME}
 #${sessionID}  ${working_dir}
 download_files_in_a_resource ${sessionID} ${scanID} ${resource_dirname}  ${dir_to_save}
+resource_dirname="NIFTI"
+download_files_in_a_resource ${sessionID} ${scanID} ${resource_dirname}  ${dir_to_save}
 
 gray_image_filename=${working_dir}/${array[1]}
 lung_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_lung_gray_seg_LTRCLobes_R231_bw.nii.gz
