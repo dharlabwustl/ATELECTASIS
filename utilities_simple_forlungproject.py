@@ -1209,11 +1209,11 @@ def imagesfor_presentation_masks(lung_mask,savetodir):
         savefilename=lung_mask #.split('.nii.gz')[0]+"w.nii.gz"
         # savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
         saveslicesofnumpy3D(img_gray_data,savefilename=savefilename,savetodir=savetodir)
-        subprocess.call("echo " + "imagesfor_presentation_masks::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "imagesfor_presentation_masks::{}  >> /workingoutput/error.txt".format(lung_mask) ,shell=True )
+        subprocess.call("echo " + "PASSED AT ::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "lungmaskfilename::{}  >> /workingoutput/error.txt".format(lung_mask) ,shell=True )
     except Exception:
-        subprocess.call("echo " + "imagesfor_presentation_masks::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "imagesfor_presentation_masks::{}  >> /workingoutput/error.txt".format(Exception) ,shell=True )
+        subprocess.call("echo " + "FAILED AT::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "FAILED DUE TO::{}  >> /workingoutput/error.txt".format(Exception) ,shell=True )
 
     return
 def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,savetodir,ext_img=".jpg"):
