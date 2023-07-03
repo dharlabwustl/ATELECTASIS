@@ -346,13 +346,14 @@ copy_scan_data ${niftifile_csvfilename} ${working_dir}
 #do
 #    copyoutput_to_snipr  ${sessionID} ${scanID} "${LATEX_DIR}"  ${snipr_output_foldername}  ${file_suffix}
 #done
-#######################################################################################################################
-#snipr_output_foldername="PROCESSING_FILES"
-#file_suffixes=( .gz )
-#for file_suffix in ${file_suffixes[@]}
-#do
-#    copyoutput_to_snipr  ${sessionID} ${scanID} "${OUTPUTDIRNAME}"  ${snipr_output_foldername}  ${file_suffix}
-#done
+######################################################################################################################
+scanID=1
+snipr_output_foldername="PROCESSING_FILES"
+file_suffixes=( .gz )
+for file_suffix in ${file_suffixes[@]}
+do
+    copyoutput_to_snipr  ${sessionID} ${scanID} "${OUTPUTDIRNAME}"  ${snipr_output_foldername}  ${file_suffix}
+done
 final_output_directory=/outputinsidedocker
 while IFS=',' read -ra array; do
 scanID=${array[2]}
