@@ -1309,7 +1309,7 @@ def create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvat
 
 
 
-        print(" I FAILED AT create_imagesfor_presentation")
+        print(" I PASSED AT create_imagesfor_presentation")
         return max_vol_id
     except:
         print(" I FAILED AT create_imagesfor_presentation")
