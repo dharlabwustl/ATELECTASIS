@@ -381,18 +381,18 @@ dir_to_save=${OUTPUTDIRNAME}
 #${sessionID}  ${working_dir}
 download_files_in_a_resource ${sessionID} ${scanID} ${resource_dirname}  ${dir_to_save}
 
-#gray_image_filename=${working_dir}/${array[1]}
-#lung_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_lung_gray_seg_LTRCLobes_R231_bw.nii.gz
-#curvature_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_2_5_15_vessels_modfd.nii.gz
-#atelectasis_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_lung_mask_seg_gt_neg500LTRCLobes_R231.nii.gz
-#savetodir=${final_output_directory}
-#echo '${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir}'::"${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir}"
-##savetodir,gray_image_filename,lung_mask,,
-#
-#call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir})
-#outputfiles_present=$(python utilities_simple_forlungproject.py "${call_create_imagesfor_presentation_arguments[@]}")
-#echo "outputfiles_present:: "${outputfiles_present: -1}"::outputfiles_present"
-#done < <( tail -n +2 "${niftifile_csvfilename}" )
+gray_image_filename=${working_dir}/${array[1]}
+lung_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_lung_gray_seg_LTRCLobes_R231_bw.nii.gz
+curvature_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_2_5_15_vessels_modfd.nii.gz
+atelectasis_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_lung_mask_seg_gt_neg500LTRCLobes_R231.nii.gz
+savetodir=${final_output_directory}
+echo '${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir}'::"${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir}"
+#savetodir,gray_image_filename,lung_mask,,
+
+call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir})
+outputfiles_present=$(python utilities_simple_forlungproject.py "${call_create_imagesfor_presentation_arguments[@]}")
+echo "outputfiles_present:: "${outputfiles_present: -1}"::outputfiles_present"
+done < <( tail -n +2 "${niftifile_csvfilename}" )
 #slice_number=
 #CALCULATION_DIR=/calculation
 #LATEX_DIR=/latex
