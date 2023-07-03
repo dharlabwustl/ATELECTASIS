@@ -1104,7 +1104,7 @@ def saveslicesofnumpy3D(img_gray_data,savefilename="",savetodir=""):
     try:
         for x in range(img_gray_data.shape[2]):
             slice_num="{0:0=3d}".format(x)
-            cv2.imwrite(os.path.join(savetodir,os.path.basename(savefilename).split(".nii")[0].replace("_","XX")+str(slice_num)+".jpg" ),img_gray_data[:,:,x] )
+            cv2.imwrite(os.path.join(savetodir,os.path.basename(savefilename).split(".nii")[0]+str(slice_num)+".jpg" ),img_gray_data[:,:,x] )
         subprocess.call("echo " + "PASSED AT ::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
         subprocess.call("echo " + "saveslicesofnumpy3D::{}  >> /workingoutput/error.txt".format(savefilename) ,shell=True )
     except Exception:
