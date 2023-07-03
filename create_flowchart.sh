@@ -374,7 +374,7 @@ final_output_directory=/outputinsidedocker
 scanID=1 #${array[2]}
 echo sessionId::${sessionID}
 #echo scanId::${scanID}
-echo "ARRAY${array[0]}::${array[1]}::${array[2]}::${array[3]}"
+#echo "ARRAY${array[0]}::${array[1]}::${array[2]}::${array[3]}"
 resource_dirname="PROCESSING_FILES"
 dir_to_save=${OUTPUTDIRNAME}
 #${sessionID}  ${working_dir}
