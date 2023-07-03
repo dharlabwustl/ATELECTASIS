@@ -400,7 +400,7 @@ done < <( tail -n +2 "${niftifile_csvfilename}" )
 
 cp  *.tex ${savetodir}/ #template_for_flowchart.tex
 
-pdflatex template_for_flowchart.tex
+pdflatex ${savetodir}/template_for_flowchart.tex
 cp  template_for_flowchart.pdf ${OUTPUTDIRNAME}/template_for_flowchart.pdf
 #slice_number=
 #CALCULATION_DIR=/calculation
