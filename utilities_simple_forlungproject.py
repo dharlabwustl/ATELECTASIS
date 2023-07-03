@@ -1101,9 +1101,13 @@ def saveslicesofnumpy3D(img_gray_data,savefilename="",savetodir=""):
 #        img_gray_data=exposure.rescale_intensity( filename_gray_data_np , in_range=(1000, 1200)) 
 #    else:
 #        img_gray_data=exposure.rescale_intensity( filename_gray_data_np , in_range=(0, 200))
-    for x in range(img_gray_data.shape[2]):
-        slice_num="{0:0=3d}".format(x)
-        cv2.imwrite(os.path.join(savetodir,os.path.basename(savefilename).split(".nii")[0]+str(slice_num)+".jpg" ),img_gray_data[:,:,x] )
+    try:
+        for x in range(img_gray_data.shape[2]):
+            slice_num="{0:0=3d}".format(x)
+            cv2.imwrite(os.path.join(savetodir,os.path.basename(savefilename).split(".nii")[0]+str(slice_num)+".jpg" ),img_gray_data[:,:,x] )
+    except Exception:
+        subprocess.call("echo " + "FAILED AT ::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "saveslicesofnumpy3D::{}  >> /workingoutput/error.txt".format(savefilename) ,shell=True )
   
 
 
