@@ -376,7 +376,7 @@ echo scanId::${scanID}
 echo "ARRAY${array[0]}::${array[1]}::${array[2]}::${array[3]}"
 resource_dirname="PROCESSING_FILES"
 dir_to_save=${OUTPUTDIRNAME}
-${sessionID}  ${working_dir}
+#${sessionID}  ${working_dir}
 download_files_in_a_resource ${sessionID} ${resource_dirname}  ${dir_to_save}
 
 #gray_image_filename=${working_dir}/${array[1]}
