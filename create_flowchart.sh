@@ -289,14 +289,15 @@ downloadniftiwithuri_withcsv()" ${csvfilename}  ${dir_to_save}
 }
 
 download_files_in_a_resource() {
-sessionId=${1} #sys.argv[1]
-resource_dirname=${2} #sys.argv[2]
-dir_to_save=${3} ##sys.argv[2]
+local sessionId=${1} #sys.argv[1]
+local scanID=${2}
+local resource_dirname=${3} #sys.argv[2]
+local dir_to_save=${4} ##sys.argv[2]
 python3 -c "
 import sys
 sys.path.append('/software');
 from download_with_session_ID import *;
-download_files_in_a_resource_withname_sh()" ${sessionId} ${resource_dirname}  ${dir_to_save}
+download_files_in_scans_resources_withname_sh()" ${sessionId} ${resource_dirname}  ${dir_to_save}
 
 
 }
@@ -369,15 +370,15 @@ copy_scan_data ${niftifile_csvfilename} ${working_dir}
 #done
 
 final_output_directory=/outputinsidedocker
-while IFS=',' read -ra array; do
-scanID=${array[2]}
+#while IFS=',' read -ra array; do
+scanID=1 #${array[2]}
 echo sessionId::${sessionID}
-echo scanId::${scanID}
+#echo scanId::${scanID}
 echo "ARRAY${array[0]}::${array[1]}::${array[2]}::${array[3]}"
 resource_dirname="PROCESSING_FILES"
 dir_to_save=${OUTPUTDIRNAME}
 #${sessionID}  ${working_dir}
-download_files_in_a_resource ${sessionID} ${resource_dirname}  ${dir_to_save}
+download_files_in_a_resource ${sessionID} ${scanID} ${resource_dirname}  ${dir_to_save}
 
 #gray_image_filename=${working_dir}/${array[1]}
 #lung_mask=${OUTPUTDIRNAME}/${array[1]%.nii*}_lung_gray_seg_LTRCLobes_R231_bw.nii.gz
@@ -390,7 +391,7 @@ download_files_in_a_resource ${sessionID} ${resource_dirname}  ${dir_to_save}
 #call_create_imagesfor_presentation_arguments=('call_create_imagesfor_presentation' ${gray_image_filename} ${lung_mask} ${curvature_mask} ${atelectasis_mask} ${savetodir})
 #outputfiles_present=$(python utilities_simple_forlungproject.py "${call_create_imagesfor_presentation_arguments[@]}")
 #echo "outputfiles_present:: "${outputfiles_present: -1}"::outputfiles_present"
-done < <( tail -n +2 "${niftifile_csvfilename}" )
+#done < <( tail -n +2 "${niftifile_csvfilename}" )
 #slice_number=
 #CALCULATION_DIR=/calculation
 #LATEX_DIR=/latex
