@@ -137,7 +137,7 @@ texfilename=${3}
 width=${4}
 outline_color=${5}
 scale=${6}
-echo "\node (${this_node}) [line width=${width}mm,draw=${outline_color},scale=${scale}] {\includegraphics[width=\textwidth,angle=90]{ ${this_node_image} }};" >>  ${texfilename} 
+echo "\node (${this_node}) [line width=${width}mm,draw=${outline_color},scale=${scale}] {\includegraphics[width=\textwidth,angle=90]{ ${this_node_image}}};" >>  ${texfilename}
 }
 function writesubsequentnodes()
 {
@@ -151,7 +151,7 @@ function writesubsequentnodes()
 	scale=${8}
 	xshift=${9}
 	yshift=${10}
-echo "\node (${this_node}) [line width=${width}mm,draw=${outline_color},scale=${scale},${direction} =of ${reference_node},xshift=${xshift},yshift=${yshift}] {\includegraphics[width=\textwidth,angle=90]{ ${this_node_image} }};" >>  ${texfilename} 
+echo "\node (${this_node}) [line width=${width}mm,draw=${outline_color},scale=${scale},${direction} =of ${reference_node},xshift=${xshift},yshift=${yshift}] {\includegraphics[width=\textwidth,angle=90]{ ${this_node_image}}};" >>  ${texfilename}
 
 }
 function writetizfooter(){
