@@ -1240,8 +1240,8 @@ def mask_on_image_color(grayimagefile_data,maskimagefile_data_3D,maskimagefile,s
         subprocess.call("echo " + "mask_on_image_color::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
         subprocess.call("echo " + "mask_on_image_color::{}  >> /workingoutput/error.txt".format(maskimagefile) ,shell=True )
     except Exception:
-        subprocess.call("echo " + "mask_on_image_color::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "mask_on_image_color::{}  >> /workingoutput/error.txt".format(maskimagefile) ,shell=True )
+        subprocess.call("echo " + "FAILED AT::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "FAILED DUE TO::{}  >> /workingoutput/error.txt".format(Exception) ,shell=True )
     return filetoseave
 def imagesfor_presentation_maskimagedata(filename_gray_data_np,savefilename,savetodir):
     try:
@@ -1255,8 +1255,8 @@ def imagesfor_presentation_maskimagedata(filename_gray_data_np,savefilename,save
         subprocess.call("echo " + "imagesfor_presentation_maskimagedata::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
         subprocess.call("echo " + "imagesfor_presentation_maskimagedata::{}  >> /workingoutput/error.txt".format(savefilename) ,shell=True )
     except Exception:
-        subprocess.call("echo " + "imagesfor_presentation_maskimagedata::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
-        subprocess.call("echo " + "imagesfor_presentation_maskimagedata::{}  >> /workingoutput/error.txt".format(Exception) ,shell=True )
+        subprocess.call("echo " + "FAILED AT::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "FAILED DUE TO::{}  >> /workingoutput/error.txt".format(Exception) ,shell=True )
     return
 # def imagesfor_presentation():
 #     savetodir='/media/atul/WDJan2022/WASHU_WORKS/PROJECTS/DOCKERIZE/LUNGS/PYCHARM/TEST_ATELECTASIS/outputtokeeplocal/savedimages'
@@ -1342,7 +1342,9 @@ def create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvat
         subprocess.call("echo " + "create_imagesfor_presentation::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
         subprocess.call("echo " + "create_imagesfor_presentation::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
         return max_vol_id
-    except:
+    except Exception:
+        subprocess.call("echo " + "FAILED AT::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "FAILED DUE TO::{}  >> /workingoutput/error.txt".format(Exception) ,shell=True )
         print(" I FAILED AT create_imagesfor_presentation")
     pass
     return "NONE"
