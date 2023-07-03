@@ -397,10 +397,10 @@ echo "outputfiles_present:: "${outputfiles_present: -1}"::outputfiles_present"
 /software/flowchart_lungatelectasis_project.sh ${array[1]%.nii*}  227 ${savetodir}
 done < <( tail -n +2 "${niftifile_csvfilename}" )
 
-pdflatex template_for_flowchart.tex
+
 cp  *.tex ${savetodir}/ #template_for_flowchart.tex
 #cp  template_for_flowchart.pdf ${OUTPUTDIRNAME}/template_for_flowchart.pdf
-
+pdflatex template_for_flowchart.tex
 #slice_number=
 #CALCULATION_DIR=/calculation
 #LATEX_DIR=/latex
