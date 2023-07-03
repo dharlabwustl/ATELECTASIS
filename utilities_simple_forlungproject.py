@@ -12,7 +12,7 @@ import numpy as np
 import cv2
 import nibabel as nib
 from skimage import exposure 
-import smtplib,math,argparse
+import smtplib,math,argparse,inspect
 # import matplotlib.pyplot as plt
 def demo():
     print(" i m in demo")
@@ -1305,11 +1305,9 @@ def create_imagesfor_presentation(savetodir,gray_image_filename,lung_mask,curvat
             if max_vol < this_slice_sum:
                 max_vol_id=x
                 max_vol=this_slice_sum
-
-
-
-
         print(" I PASSED AT create_imagesfor_presentation")
+        subprocess.call("echo " + "create_imagesfor_presentation::{}  >> /workingoutput/error.txt".format(inspect.stack()[0][3]) ,shell=True )
+        subprocess.call("echo " + "create_imagesfor_presentation::{}  >> /workingoutput/error.txt".format(savetodir) ,shell=True )
         return max_vol_id
     except:
         print(" I FAILED AT create_imagesfor_presentation")
